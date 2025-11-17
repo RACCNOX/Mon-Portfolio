@@ -4,6 +4,14 @@ body {
     background-color: black;
 }
 
+/*
+
+.cyber {
+    font-family: 'Orbitron', sans-serif;
+}
+
+*/
+
 #matrixCanvas {
     position: fixed;
     top: 0;
@@ -28,8 +36,8 @@ body {
     position: relative;
     margin: 50px auto; /* centre la boîte */
 
-    border-top-left-radius: 30px;
-    border-bottom-right-radius: 30px;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 
     border-top-right-radius: 30px;
     border-bottom-left-radius: 30px;
@@ -51,15 +59,17 @@ body {
     width: 290px;
     height: 4px;
     background: #0f0;
+    border-top-left-radius: 30px;
   }
   
   .corner-top-left .v-line {
     width: 4px;
-    height: 120px;
+    height: 80px;
     background: #0f0;
     position: absolute;
     top: 0;
     left: 0;
+    border-top-left-radius: 30px;
   }
 
   /* Coin bas droit */
@@ -67,6 +77,7 @@ body {
     position: absolute;
     bottom: 10px;
     right: 10px;
+    border-bottom-right-radius: 30px;
   }
 
   .corner-bottom-right .h-line {
@@ -76,13 +87,26 @@ body {
     position: absolute;
     bottom: 0;
     right: 0;
+    border-bottom-right-radius: 30px;
   }
   
   .corner-bottom-right .v-line {
     width: 4px;
-    height: 120px;
+    height: 80px;
     background: #0f0;
     position: absolute;
     bottom: 0;
     right: 0;
+    border-bottom-right-radius: 30px;
+  }
+
+
+.text1 {
+    color: rgb(255, 255, 255);        /* couleur du texte */
+    font-size: 34px;         /* taille */
+    font-weight: bold;       /* épaisseur */
+    font-family: 'Orbitron', sans-serif;
+    position: absolute;
+    left: 44%;
+    top: 8%;
   }
