@@ -13,7 +13,7 @@ function draw() {
     ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = "#0f0"; // Vert Matrix
+    ctx.fillStyle = "#0f0";
     ctx.font = `${fontSize}px monospace`;
 
     for (let i = 0; i < drops.length; i++) {
@@ -28,3 +28,17 @@ function draw() {
 }
 
 setInterval(draw, 50);
+
+/* ---------------------------
+   CONTRÔLE DE LA RÉPONSE
+---------------------------- */
+document.getElementById("answer").addEventListener("input", function() {
+    const value = this.value;
+    const menu = document.getElementById("menu");
+
+    if (value === "1") {
+        menu.style.display = "flex";
+    } else {
+        menu.style.display = "none";
+    }
+});

@@ -4,14 +4,6 @@ body {
     background-color: black;
 }
 
-/*
-
-.cyber {
-    font-family: 'Orbitron', sans-serif;
-}
-
-*/
-
 #matrixCanvas {
     position: fixed;
     top: 0;
@@ -21,20 +13,13 @@ body {
     z-index: -1;
 }
 
-.container {
-    position: relative; /* Assure que le contenu reste au-dessus */
-    z-index: 1; /* Place le texte et l'image devant le canvas */
-}
-
-
-
-
-  .rectangle {
+/* RECTANGLE CYBER */
+.rectangle {
     width: 460px;
     height: 150px;
     background: black;
     position: relative;
-    margin: 50px auto; /* centre la boîte */
+    margin: 50px auto;
 
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -43,70 +28,93 @@ body {
     border-bottom-left-radius: 30px;
 
     box-shadow:
-      0 0 15px rgba(0,255,0,0.3),     /* glow vert léger */
-      0 0 40px rgba(255,255,255,0.1); /* halo blanc doux */
-  }
+      0 0 15px rgba(0,255,0,0.3),
+      0 0 40px rgba(255,255,255,0.1);
+}
 
-  /* Coin haut gauche */
-  .corner-top-left {
+/* Coin haut gauche */
+.corner-top-left {
     position: absolute;
     top: 10px;
     left: 10px;
-    border-top-left-radius: 30px;
-  }
+}
 
-  .corner-top-left .h-line {
+.corner-top-left .h-line {
     width: 290px;
     height: 4px;
     background: #0f0;
-    border-top-left-radius: 30px;
-  }
-  
-  .corner-top-left .v-line {
+}
+.corner-top-left .v-line {
     width: 4px;
     height: 80px;
     background: #0f0;
     position: absolute;
     top: 0;
     left: 0;
-    border-top-left-radius: 30px;
-  }
+}
 
-  /* Coin bas droit */
-  .corner-bottom-right {
+/* Coin bas droit */
+.corner-bottom-right {
     position: absolute;
     bottom: 10px;
     right: 10px;
-    border-bottom-right-radius: 30px;
-  }
+}
 
-  .corner-bottom-right .h-line {
+.corner-bottom-right .h-line {
     width: 290px;
     height: 4px;
     background: #0f0;
     position: absolute;
     bottom: 0;
     right: 0;
-    border-bottom-right-radius: 30px;
-  }
-  
-  .corner-bottom-right .v-line {
+}
+.corner-bottom-right .v-line {
     width: 4px;
     height: 80px;
     background: #0f0;
     position: absolute;
     bottom: 0;
     right: 0;
-    border-bottom-right-radius: 30px;
-  }
+}
 
-
-.text1 {
-    color: rgb(255, 255, 255);        /* couleur du texte */
-    font-size: 34px;         /* taille */
-    font-weight: bold;       /* épaisseur */
+/* Texte centre */
+.math-zone {
+    color: #0f0;
+    font-size: 28px;
     font-family: 'Orbitron', sans-serif;
     position: absolute;
-    left: 44%;
-    top: 8%;
-  }
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Champ réponse */
+#answer {
+    background: #111;
+    border: 1px solid #0f0;
+    color: #0f0;
+    border-radius: 6px;
+    width: 40px;
+    font-size: 22px;
+    text-align: center;
+    margin-left: 10px;
+}
+
+/* MENU (invisible au début) */
+.menu {
+    width: 460px;
+    margin: 20px auto;
+    background: #000;
+    border: 1px solid #0f0;
+    display: none;
+    justify-content: space-around;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+.menu a {
+    color: #0f0;
+    font-family: 'Orbitron';
+    text-decoration: none;
+    font-size: 20px;
+}
