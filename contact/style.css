@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: black;
+}
+
+#matrixCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+
+.menu {
+    width: 1060px;
+    margin: 20px auto;
+    background: #000;
+    border: 1px solid #0f0;
+    display: flex;
+    justify-content: space-around; /* espace entre tous les items */
+    align-items: center;           /* centre verticalement */
+    padding: 12px;
+    border-radius: 10px;
+}
+
+.menu a {
+    color: #fff;
+    font-family: 'Orbitron';
+    text-decoration: none;
+    font-size: 20px;
+    /* plus besoin de top: 35px */
+}
+
+.menu a.image img {
+    width: 60px;  /* taille fixe pour le logo */
+    height: auto;
+}
