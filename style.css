@@ -40,7 +40,7 @@ body {
 }
 
 .corner-top-left .h-line {
-    width: 450px;
+    width: 480px;
     height: 4px;
     background: #0f0;
 }
@@ -61,7 +61,7 @@ body {
 }
 
 .corner-bottom-right .h-line {
-    width: 450px;
+    width: 480px;
     height: 4px;
     background: #0f0;
     position: absolute;

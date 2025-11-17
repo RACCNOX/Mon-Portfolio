@@ -38,3 +38,90 @@ body {
     width: 60px;  /* taille fixe pour le logo */
     height: auto;
 }
+
+
+
+
+/* RECTANGLE CYBER */
+.rectangle {
+    width: 590px;
+    height: 100px;
+    background: black;
+    position: relative;
+    margin: 50px auto;
+
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+
+    box-shadow:
+      0 0 15px rgba(0,255,0,0.3),
+      0 0 40px rgba(255,255,255,0.1);
+}
+
+/* Coin haut gauche */
+.corner-top-left {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.corner-top-left .h-line {
+    width: 420px;
+    height: 4px;
+    background: #0f0;
+}
+.corner-top-left .v-line {
+    width: 4px;
+    height: 55px;
+    background: #0f0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Coin bas droit */
+.corner-bottom-right {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.corner-bottom-right .h-line {
+    width: 420px;
+    height: 4px;
+    background: #0f0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.corner-bottom-right .v-line {
+    width: 4px;
+    height: 55px;
+    background: #0f0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.text1 {
+    color: rgb(255, 255, 255);        /* couleur du texte */
+    font-size: 34px;         /* taille */
+    font-weight: bold;       /* épaisseur */
+    font-family: 'Orbitron', sans-serif;
+    text-decoration: none; /* enlève la barre (soulignement) */
+    position: relative;
+    left: 33%;
+    top: 27%;
+  }
+
+.text1:hover {
+    text-decoration: underline; /* optionnel : effet au survol */
+    text-decoration: none; /* enlève la barre (soulignement) */
+}
+
+.menu a.color {
+    color: #0f0;
+}
