@@ -42,3 +42,4 @@ document.getElementById("answer").addEventListener("input", function() {
         menu.style.display = "none";
     }
 });
+
