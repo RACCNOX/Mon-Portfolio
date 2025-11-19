@@ -7,7 +7,9 @@ canvas.height = window.innerHeight;
 const letters = "01".split("");
 const fontSize = 16;
 const columns = canvas.width / fontSize;
-const drops = Array(Math.floor(columns)).fill(0);
+
+// Initialisation des drops avec une valeur aléatoire pour commencer rempli
+const drops = Array(Math.floor(columns)).fill(0).map(() => Math.floor(Math.random() * canvas.height / fontSize));
 
 function draw() {
     ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
@@ -28,6 +30,7 @@ function draw() {
 }
 
 setInterval(draw, 50);
+
 
 /* ---------------------------
    CONTRÔLE DE LA RÉPONSE

@@ -120,6 +120,14 @@ body {
     /* plus besoin de top: 35px */
 }
 
+.menu a:hover {
+    color: #0f0;
+}
+
+.menu a.color:hover {
+    color: #fff;
+}
+
 .menu a.image img {
     width: 60px;  /* taille fixe pour le logo */
     height: auto;
