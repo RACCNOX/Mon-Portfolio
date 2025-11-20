@@ -129,24 +129,6 @@ body {
     color: #0f0;
 }
 
-
-.rectangle-green {
-    width: 590px;          /* légèrement plus grand pour dépasser rectangle2 */
-    height: 490px;
-    background-color: #0f0;
-    position: absolute;
-    top: 33%;              
-    left: 36%;
-    z-index: 1;            /* derrière rectangle2 */
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 30px;
-    border-bottom-left-radius: 30px;
-    box-shadow:
-      0 0 15px rgba(255, 255, 255, 0.3),
-      0 0 40px rgba(255, 255, 255, 0.1);
-}
-
 .rectangle-green2 {
     width: 590px;          /* légèrement plus grand pour dépasser rectangle2 */
     height: 490px;
