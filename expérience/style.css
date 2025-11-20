@@ -135,8 +135,8 @@ body {
     height: 490px;
     background-color: #0f0;
     position: absolute;
-    top: 35%;              
-    left: 37%;
+    top: 33%;              
+    left: 36%;
     z-index: 1;            /* derrière rectangle2 */
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -147,76 +147,13 @@ body {
       0 0 40px rgba(255, 255, 255, 0.1);
 }
 
-.rectangle2 {
-    width: 590px;
-    height: 490px;
-    background: black;
-    position: absolute;
-    top: 30%;
-    left: 34.5%;
-    z-index: 2;            /* devant rectangle vert */
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 30px;
-    border-bottom-left-radius: 30px;
-    box-shadow:
-      0 0 15px rgba(0,255,0,0.3),
-      0 0 40px rgba(255,255,255,0.1);
-}
-
-/* Coin haut gauche */
-.corner-top-left2 {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-}
-
-.corner-top-left2 .h-line2 {
-    width: 420px;
-    height: 4px;
-    background: #0f0;
-}
-.corner-top-left2 .v-line2 {
-    width: 4px;
-    height: 145px;
-    background: #0f0;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-/* Coin bas droit */
-.corner-bottom-right2 {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-}
-
-.corner-bottom-right2 .h-line2 {
-    width: 420px;
-    height: 4px;
-    background: #0f0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-.corner-bottom-right2 .v-line2 {
-    width: 4px;
-    height: 145px;
-    background: #0f0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-
-
 .rectangle-green2 {
     width: 590px;          /* légèrement plus grand pour dépasser rectangle2 */
     height: 490px;
     background-color: #0f0;
     position: absolute;
-    top: 35%;              
-    left: 37%;
+    top: 33%;              
+    left: 13.5%;
     z-index: 1;            /* derrière rectangle2 */
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -233,7 +170,7 @@ body {
     background: black;
     position: absolute;
     top: 30%;
-    left: 1%;
+    left: 12%;
     z-index: 2;            /* devant rectangle vert */
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -289,43 +226,86 @@ body {
     right: 0;
 }
 
-.text3 {
-    color: rgb(255, 255, 255);        /* couleur du texte */
-    font-size: 34px;         /* taille */
+.text2_1 {
+    color: #0f0;        /* couleur du texte */
+    font-size: 30px;         /* taille */
     font-weight: bold;       /* épaisseur */
     font-family: 'Orbitron', sans-serif;
-    text-decoration: none; /* enlève la barre (soulignement) */
     position: relative;
     left: 8%;
     top: 0%;
   }
 
-.image3 img {
+.text2_2 {
+    color: rgb(255, 255, 255);        /* couleur du texte */
+    font-size: 20px;         /* taille */
+    font-weight: bold;       /* épaisseur */
+    font-family: 'Orbitron', sans-serif;
+    position: relative;
+    left: 8%;
+    top: -6%;
+  }
+
+.text2_3 {
+    color: #0f0;        /* couleur du texte */
+    font-size: 17px;         /* taille */
+    font-weight: 0;       /* épaisseur */
+    font-family: 'Orbitron', sans-serif;
+    position: relative;
+    left: 8%;
+    top: -9%;
+  }
+
+  .text2_4 {
+    color: rgb(255, 255, 255);        /* couleur du texte */
+    font-size: 34px;         /* taille */
+    font-weight: 0;       /* épaisseur */
+    font-family: 'Orbitron', sans-serif;
+    position: relative;
+    text-align: center;
+    left: -0.5%;
+    top: 0%;
+  }
+
+  .image1 {
     width: 130px;  /* taille fixe pour le logo */
     height: auto;
     position: absolute;
-    top: 30%;
-    left: 50%;
+    top: 1%;
+    left: 77%;
 }
 
 
+.rectangle-green3 {
+    width: 590px;          /* légèrement plus grand pour dépasser rectangle2 */
+    height: 490px;
+    background-color: #0f0;
+    position: absolute;
+    top: 33%;              
+    left: 58.5%;
+    z-index: 1;            /* derrière rectangle2 */
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    box-shadow:
+      0 0 15px rgba(255, 255, 255, 0.3),
+      0 0 40px rgba(255, 255, 255, 0.1);
+}
 
 /* RECTANGLE CYBER */
 .rectangle4 {
     width: 590px;
-    height: 200px;
+    height: 490px;
     background: black;
     position: absolute;
-    margin: 50px auto;
-    top: 50%;
-    left: 63%;
-
+    top: 30%;
+    left: 57%;
+    z-index: 2;            /* devant rectangle vert */
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
-
     border-top-right-radius: 30px;
     border-bottom-left-radius: 30px;
-
     box-shadow:
       0 0 15px rgba(0,255,0,0.3),
       0 0 40px rgba(255,255,255,0.1);
@@ -376,21 +356,51 @@ body {
     right: 0;
 }
 
-.text4 {
-    color: rgb(255, 255, 255);        /* couleur du texte */
-    font-size: 34px;         /* taille */
+.text3_1 {
+    color: #0f0;        /* couleur du texte */
+    font-size: 30px;         /* taille */
     font-weight: bold;       /* épaisseur */
     font-family: 'Orbitron', sans-serif;
-    text-decoration: none; /* enlève la barre (soulignement) */
     position: relative;
     left: 8%;
     top: 0%;
   }
 
-.image4 img {
+.text3_2 {
+    color: rgb(255, 255, 255);        /* couleur du texte */
+    font-size: 20px;         /* taille */
+    font-weight: bold;       /* épaisseur */
+    font-family: 'Orbitron', sans-serif;
+    position: relative;
+    left: 8%;
+    top: -6%;
+  }
+
+.text3_3 {
+    color: #0f0;        /* couleur du texte */
+    font-size: 17px;         /* taille */
+    font-weight: 0;       /* épaisseur */
+    font-family: 'Orbitron', sans-serif;
+    position: relative;
+    left: 8%;
+    top: -9%;
+  }
+
+  .text3_4 {
+    color: rgb(255, 255, 255);        /* couleur du texte */
+    font-size: 34px;         /* taille */
+    font-weight: 0;       /* épaisseur */
+    font-family: 'Orbitron', sans-serif;
+    position: relative;
+    left: -0.5%;
+    top: 0%;
+    text-align:center;
+  }
+
+  .image2 {
     width: 130px;  /* taille fixe pour le logo */
     height: auto;
     position: absolute;
-    top: 17%;
-    left: 50%;
+    top: 1%;
+    left: 77%;
 }
