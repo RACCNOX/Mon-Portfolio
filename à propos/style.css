@@ -133,8 +133,8 @@ body {
 
 
 .rectangle-green2 {
-    width: 590px;          /* légèrement plus grand pour dépasser rectangle2 */
-    height: 400px;
+    width: 570px;          /* légèrement plus grand pour dépasser rectangle2 */
+    height: 310px;
     background-color: #0f0;
     position: absolute;
     top: 33%;              
@@ -150,8 +150,8 @@ body {
 }
 /* RECTANGLE CYBER */
 .rectangle3 {
-    width: 590px;
-    height: 400px;
+    width: 570px;
+    height: 310px;
     background: black;
     position: absolute;
     top: 30%;
@@ -212,22 +212,31 @@ body {
 }
 
   .image1 {
-    width: 500px;  /* taille fixe pour le logo */
+    width: 210px;  /* taille fixe pour le logo */
     height: auto;
     position: absolute;
     top: 10%;
     left: 10%;
 }
 
+.text3 {
+    color: rgb(255, 255, 255);        /* couleur du texte */
+    font-size: 30px;         /* taille */
+    font-weight: bold;       /* épaisseur */
+    font-family: 'Orbitron', sans-serif;
+    position: absolute;
+    left: 50%;
+    top: 5%;
+  }
 
 
 .rectangle-green3 {
-    width: 1090px;          /* légèrement plus grand pour dépasser rectangle2 */
-    height: 400px;
+    width: 1130px;          /* légèrement plus grand pour dépasser rectangle2 */
+    height: 450px;
     background-color: #0f0;
     position: absolute;
-    top: 53%;              
-    left: 33.5%;
+    top: 48%;              
+    left: 30.5%;
     z-index: 1;            /* derrière rectangle2 */
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -239,12 +248,12 @@ body {
 }
 /* RECTANGLE CYBER */
 .rectangle4 {
-    width: 1090px;
-    height: 400px;
+    width: 1130px;
+    height: 450px;
     background: black;
     position: absolute;
-    top: 50%;
-    left: 32%;
+    top: 45%;
+    left: 29%;
     z-index: 2;            /* devant rectangle vert */
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -302,11 +311,12 @@ body {
 
 .text2 {
     color: rgb(255, 255, 255);        /* couleur du texte */
-    font-size: 24px;         /* taille */
-    font-weight: bold;       /* épaisseur */
+    font-size: 20px;         /* taille */
+    font-weight: 0;       /* épaisseur */
     font-family: 'Orbitron', sans-serif;
     text-decoration: none; /* enlève la barre (soulignement) */
     position: relative;
-    left: 5%;
+    text-align: center;
+    left: 2%;
     top:5%;
   }
