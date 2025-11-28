@@ -1,15 +1,25 @@
 const canvas = document.getElementById("matrixCanvas");
 const ctx = canvas.getContext("2d");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+// Fonction de redimensionnement
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
 
 const letters = "01".split("");
 const fontSize = 16;
-const columns = canvas.width / fontSize;
+let columns = canvas.width / fontSize;
+let drops = [];
 
-// Initialisation des drops avec une valeur aléatoire pour commencer rempli
-const drops = Array(Math.floor(columns)).fill(0).map(() => Math.floor(Math.random() * canvas.height / fontSize));
+function initDrops() {
+    columns = canvas.width / fontSize;
+    drops = Array(Math.floor(columns)).fill(0).map(() => Math.floor(Math.random() * canvas.height / fontSize));
+}
+initDrops();
+window.addEventListener('resize', initDrops);
 
 function draw() {
     ctx.fillStyle = "rgba(0, 0, 0, 0.1)";

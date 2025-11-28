@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
     <title>Portfolio / PROJETS</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="../image/image 7.png" />
 </head>
@@ -12,60 +12,59 @@
 <body>
     <canvas id="matrixCanvas"></canvas>
 
-    <!-- MENU DÉROULANT -->
-    <div class="menu" id="menu">
-        <a href="../à propos/index.html">À propos</a>
-        <a href="../compétences/index.html">Compétences</a>
-        <a href="./index.html" class="color">Projets</a>
-        <a href="../index.html" class="image">
-            <img src="../image/image 7.png">
-        </a>
-        <a href="../expérience/index.html">Expérience</a>
-        <a href="../certifications/index.html">Certifications</a>
-        <a href="../contact/index.html">Contact</a>
+    <div class="main-wrapper">
+
+        <nav class="menu">
+            <a href="../à propos/index.html">À propos</a>
+            <a href="../compétences/index.html">Compétences</a>
+            <a href="./index.html" class="color">Projets</a>
+            <a href="../index.html" class="menu-logo">
+                <img src="../image/image 7.png" alt="Logo">
+            </a>
+            <a href="../expérience/index.html">Expérience</a>
+            <a href="../certifications/index.html">Certifications</a>
+            <a href="../contact/index.html">Contact</a>
+        </nav>
+
+        <div class="cyber-card title-card">
+            <div class="corner top-left"><div class="h-line"></div><div class="v-line"></div></div>
+            <div class="corner bottom-right"><div class="h-line"></div><div class="v-line"></div></div>
+            <h1>PROJETS</h1>
+        </div>
+
+        <div class="projects-grid">
+
+            <div class="cyber-card project-card">
+                <div class="corner top-left"><div class="h-line"></div><div class="v-line"></div></div>
+                <div class="corner bottom-right"><div class="h-line"></div><div class="v-line"></div></div>
+                
+                <div class="card-content">
+                    <h2 class="project-title">RootMe PRO</h2>
+                    <p class="project-desc">Plateforme d'entraînement cybersécurité</p>
+                    
+                    <a href="https://root-me.pro/profiles" target="_blank" class="project-link">
+                        <img src="../image/RMP-logo.png" alt="Logo RootMe">
+                    </a>
+                </div>
+            </div>
+
+            <div class="cyber-card project-card">
+                <div class="corner top-left"><div class="h-line"></div><div class="v-line"></div></div>
+                <div class="corner bottom-right"><div class="h-line"></div><div class="v-line"></div></div>
+                
+                <div class="card-content">
+                    <h2 class="project-title">Site Vitrine</h2>
+                    <p class="project-desc">Création d'un site web responsive</p>
+                    
+                    <a href="#" class="project-link">
+                        <img src="../image/image 7.png" alt="Image Projet">
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
     </div>
-
-    <div class="rectangle">
-
-    <!-- Coin haut gauche -->
-    <div class="corner-top-left">
-        <div class="h-line"></div>
-        <div class="v-line"></div>
-    </div>
-
-    <!-- Coin bas droit -->
-    <div class="corner-bottom-right">
-        <div class="h-line"></div>
-        <div class="v-line"></div>
-    </div>
-
-    <p class="text1">PROJETS</p>
-
-    </div>
-
-    
-<!--
-    <div class="rectangle2">
-
-    <div class="corner-top-left2">
-        <div class="h-line2"></div>
-        <div class="v-line2"></div>
-    </div>
-
-    <div class="corner-bottom-right2">
-        <div class="h-line2"></div>
-        <div class="v-line2"></div>
-    </div>
-
-    <p class="text2">RootMe PRO :</p>
-
-    <a href="https://root-me.pro/profiles" target="_blank" class="image2">
-        <img src="../image/RMP-logo.png">
-    </a>
-
-    </div>
--->
-
 
     <script src="script.js"></script>
 </body>

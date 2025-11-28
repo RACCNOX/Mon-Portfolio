@@ -1,7 +1,17 @@
+/* ========== RESET & GLOBAL ========== */
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
-    overflow: hidden;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
     background-color: black;
+    font-family: 'Orbitron', sans-serif;
+    overflow-x: hidden;
+    color: white;
 }
 
 #matrixCanvas {
@@ -13,380 +23,173 @@ body {
     z-index: -1;
 }
 
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 50px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
+/* ========== MENU ========== */
 .menu {
-    width: 1060px;
-    margin: 20px auto;
-    background: #000;
+    width: 100%;
+    max-width: 1060px;
+    background: black;
     border: 1px solid #0f0;
     display: flex;
-    justify-content: space-around; /* espace entre tous les items */
-    align-items: center;           /* centre verticalement */
-    padding: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    gap: 20px;
     border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,255,0,0.2);
 }
 
 .menu a {
     color: #fff;
-    font-family: 'Orbitron';
     text-decoration: none;
-    font-size: 20px;
-    /* plus besoin de top: 35px */
+    font-size: 18px;
+    transition: 0.3s;
 }
 
-.menu a:hover {
+.menu a:hover, .menu a.color {
     color: #0f0;
 }
 
-.menu a.color:hover {
-    color: #fff;
-}
-
-.menu a.image img {
-    width: 60px;  /* taille fixe pour le logo */
+.menu-logo img {
+    width: 50px;
     height: auto;
+    vertical-align: middle;
 }
 
-
-
-
-/* RECTANGLE CYBER */
-.rectangle {
-    width: 590px;
-    height: 100px;
+/* ========== STYLE GÉNÉRIQUE "CYBER CARD" ========== */
+.cyber-card {
     background: black;
     position: relative;
-    margin: 50px auto;
-
+    
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
-
     border-top-right-radius: 30px;
     border-bottom-left-radius: 30px;
 
     box-shadow:
       0 0 15px rgba(0,255,0,0.3),
       0 0 40px rgba(255,255,255,0.1);
+      
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Coin haut gauche */
-.corner-top-left {
+/* Décorations (Lignes) */
+.corner {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
 }
+.top-left { top: 10px; left: 10px; }
+.bottom-right { bottom: 10px; right: 10px; }
 
-.corner-top-left .h-line {
-    width: 420px;
-    height: 4px;
-    background: #0f0;
-}
-.corner-top-left .v-line {
-    width: 4px;
-    height: 55px;
-    background: #0f0;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-/* Coin bas droit */
-.corner-bottom-right {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-}
-
-.corner-bottom-right .h-line {
-    width: 420px;
+.h-line {
+    width: 30%; /* Pourcentage au lieu de pixels fixes */
     height: 4px;
     background: #0f0;
     position: absolute;
-    bottom: 0;
-    right: 0;
 }
-.corner-bottom-right .v-line {
+.top-left .h-line { top: 0; left: 0; }
+.bottom-right .h-line { bottom: 0; right: 0; }
+
+.v-line {
     width: 4px;
-    height: 55px;
+    height: 30%; /* Pourcentage au lieu de pixels fixes */
     background: #0f0;
     position: absolute;
-    bottom: 0;
-    right: 0;
+}
+.top-left .v-line { top: 0; left: 0; }
+.bottom-right .v-line { bottom: 0; right: 0; }
+
+/* ========== CONTENU SPÉCIFIQUE ========== */
+
+/* Titre */
+.title-card {
+    width: 90%;
+    max-width: 600px;
+    padding: 30px;
+    text-align: center;
 }
 
-.text1 {
-    color: rgb(255, 255, 255);        /* couleur du texte */
-    font-size: 34px;         /* taille */
-    font-weight: bold;       /* épaisseur */
-    font-family: 'Orbitron', sans-serif;
-    text-decoration: none; /* enlève la barre (soulignement) */
-    position: relative;
-    left: 33%;
-    top: 27%;
-  }
-
-.menu a.color {
-    color: #0f0;
+.title-card h1 {
+    margin: 0;
+    font-size: clamp(24px, 5vw, 34px);
+    letter-spacing: 2px;
 }
 
-
-
-/* RECTANGLE CYBER */
-.rectangle2 {
-    width: 590px;
-    height: 200px;
-    background: black;
-    position: absolute;
-    margin: 50px auto;
-    top: 30%;
-    left: 3%;
-
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-
-    border-top-right-radius: 30px;
-    border-bottom-left-radius: 30px;
-
-    box-shadow:
-      0 0 15px rgba(0,255,0,0.3),
-      0 0 40px rgba(255,255,255,0.1);
+/* --- GRILLE DE CONTACT --- */
+.contact-grid {
+    display: flex;
+    flex-wrap: wrap; /* Permet le passage à la ligne */
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
 }
 
-/* Coin haut gauche */
-.corner-top-left2 {
-    position: absolute;
-    top: 10px;
-    left: 10px;
+/* Carte de contact individuelle */
+.contact-card {
+    width: 300px; /* Largeur de base */
+    min-height: 200px;
+    padding: 20px;
+    flex-grow: 1; /* Permet de grandir un peu si besoin */
+    max-width: 400px;
 }
 
-.corner-top-left2 .h-line2 {
-    width: 420px;
-    height: 4px;
-    background: #0f0;
-}
-.corner-top-left2 .v-line2 {
-    width: 4px;
-    height: 145px;
-    background: #0f0;
-    position: absolute;
-    top: 0;
-    left: 0;
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    text-align: center;
+    width: 100%;
 }
 
-/* Coin bas droit */
-.corner-bottom-right2 {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
+.contact-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    color: white;
 }
 
-.corner-bottom-right2 .h-line2 {
-    width: 420px;
-    height: 4px;
-    background: #0f0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-.corner-bottom-right2 .v-line2 {
-    width: 4px;
-    height: 145px;
-    background: #0f0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-
-.text2 {
-    color: rgb(255, 255, 255);        /* couleur du texte */
-    font-size: 34px;         /* taille */
-    font-weight: bold;       /* épaisseur */
-    font-family: 'Orbitron', sans-serif;
-    text-decoration: none; /* enlève la barre (soulignement) */
-    position: relative;
-    left: 8%;
-    top: 0%;
-  }
-
-.image2 img {
-    width: 130px;  /* taille fixe pour le logo */
+.contact-link img {
+    width: 80px; /* Taille icône */
     height: auto;
-    position: absolute;
-    top: 17%;
-    left: 50%;
+    transition: transform 0.3s ease, filter 0.3s;
+    border-radius: 10px; /* Un peu d'arrondi sur les logos carrés */
 }
 
-
-
-
-/* RECTANGLE CYBER */
-.rectangle3 {
-    width: 590px;
-    height: 200px;
-    background: black;
-    position: absolute;
-    margin: 50px auto;
-    top: 40%;
-    left: 33%;
-
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-
-    border-top-right-radius: 30px;
-    border-bottom-left-radius: 30px;
-
-    box-shadow:
-      0 0 15px rgba(0,255,0,0.3),
-      0 0 40px rgba(255,255,255,0.1);
+.contact-link img:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px #0f0);
 }
 
-/* Coin haut gauche */
-.corner-top-left3 {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-}
-
-.corner-top-left3 .h-line3 {
-    width: 420px;
-    height: 4px;
-    background: #0f0;
-}
-.corner-top-left3 .v-line3 {
-    width: 4px;
-    height: 145px;
-    background: #0f0;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-/* Coin bas droit */
-.corner-bottom-right3 {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-}
-
-.corner-bottom-right3 .h-line3 {
-    width: 420px;
-    height: 4px;
-    background: #0f0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-.corner-bottom-right3 .v-line3 {
-    width: 4px;
-    height: 145px;
-    background: #0f0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-
-.text3 {
-    color: rgb(255, 255, 255);        /* couleur du texte */
-    font-size: 34px;         /* taille */
-    font-weight: bold;       /* épaisseur */
-    font-family: 'Orbitron', sans-serif;
-    text-decoration: none; /* enlève la barre (soulignement) */
-    position: relative;
-    left: 8%;
-    top: 0%;
-  }
-
-.image3 img {
-    width: 130px;  /* taille fixe pour le logo */
-    height: auto;
-    position: absolute;
-    top: 30%;
-    left: 50%;
-}
-
-
-
-/* RECTANGLE CYBER */
-.rectangle4 {
-    width: 590px;
-    height: 200px;
-    background: black;
-    position: absolute;
-    margin: 50px auto;
-    top: 50%;
-    left: 63%;
-
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-
-    border-top-right-radius: 30px;
-    border-bottom-left-radius: 30px;
-
-    box-shadow:
-      0 0 15px rgba(0,255,0,0.3),
-      0 0 40px rgba(255,255,255,0.1);
-}
-
-/* Coin haut gauche */
-.corner-top-left4 {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-}
-
-.corner-top-left4 .h-line4 {
-    width: 420px;
-    height: 4px;
-    background: #0f0;
-}
-.corner-top-left4 .v-line4 {
-    width: 4px;
-    height: 145px;
-    background: #0f0;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-/* Coin bas droit */
-.corner-bottom-right4 {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-}
-
-.corner-bottom-right4 .h-line4 {
-    width: 420px;
-    height: 4px;
-    background: #0f0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-.corner-bottom-right4 .v-line4 {
-    width: 4px;
-    height: 145px;
-    background: #0f0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-
-.text4 {
-    color: rgb(255, 255, 255);        /* couleur du texte */
-    font-size: 34px;         /* taille */
-    font-weight: bold;       /* épaisseur */
-    font-family: 'Orbitron', sans-serif;
-    text-decoration: none; /* enlève la barre (soulignement) */
-    position: relative;
-    left: 8%;
-    top: 0%;
-  }
-
-.image4 img {
-    width: 130px;  /* taille fixe pour le logo */
-    height: auto;
-    position: absolute;
-    top: 17%;
-    left: 50%;
+/* ========== RESPONSIVE MOBILE ========== */
+@media (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+    }
+    
+    .contact-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .contact-card {
+        width: 90%; /* Prend toute la largeur sur mobile */
+        max-width: 400px;
+    }
 }

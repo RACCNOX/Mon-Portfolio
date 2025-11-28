@@ -1,7 +1,17 @@
+/* ========== RESET & GLOBAL ========== */
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
-    overflow: hidden;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
     background-color: black;
+    font-family: 'Orbitron', sans-serif;
+    overflow-x: hidden;
+    color: white;
 }
 
 #matrixCanvas {
@@ -13,310 +23,205 @@ body {
     z-index: -1;
 }
 
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 60px; /* Espace entre les gros blocs */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
+/* ========== MENU ========== */
 .menu {
-    width: 1060px;
-    margin: 20px auto;
-    background: #000;
+    width: 100%;
+    max-width: 1060px;
+    background: black;
     border: 1px solid #0f0;
     display: flex;
-    justify-content: space-around; /* espace entre tous les items */
-    align-items: center;           /* centre verticalement */
-    padding: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    gap: 20px;
     border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,255,0,0.2);
 }
 
 .menu a {
     color: #fff;
-    font-family: 'Orbitron';
     text-decoration: none;
-    font-size: 20px;
-    /* plus besoin de top: 35px */
+    font-size: 18px;
+    transition: 0.3s;
 }
 
-.menu a:hover {
+.menu a:hover, .menu a.color {
     color: #0f0;
 }
 
-.menu a.color:hover {
-    color: #fff;
-}
-
-.menu a.image img {
-    width: 60px;  /* taille fixe pour le logo */
+.menu-logo img {
+    width: 50px;
     height: auto;
+    vertical-align: middle;
 }
 
+/* ========== SYSTÈME DE COUCHES (STACKING) ========== */
 
-
-
-/* RECTANGLE CYBER */
-.rectangle {
-    width: 590px;
-    height: 100px;
-    background: black;
-    position: relative;
-    margin: 50px auto;
-
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-
-    border-top-right-radius: 30px;
-    border-bottom-left-radius: 30px;
-
-    box-shadow:
-      0 0 15px rgba(0,255,0,0.3),
-      0 0 40px rgba(255,255,255,0.1);
+/* 1. Le Conteneur Principal (Invisible) */
+.stack-wrapper {
+    position: relative; /* Important pour que les enfants se positionnent par rapport à lui */
+    width: 90%; /* Largeur responsive */
+    display: flex;
+    justify-content: center;
 }
 
-/* Coin haut gauche */
-.corner-top-left {
+/* Taille spécifique pour le profil */
+.profile-stack {
+    max-width: 600px;
+}
+
+/* Taille spécifique pour la description */
+.description-stack {
+    max-width: 1130px;
+}
+
+/* 2. La Couche VERTE (Derrière) */
+.green-layer {
     position: absolute;
-    top: 10px;
-    left: 10px;
-}
-
-.corner-top-left .h-line {
-    width: 420px;
-    height: 4px;
-    background: #0f0;
-}
-.corner-top-left .v-line {
-    width: 4px;
-    height: 55px;
-    background: #0f0;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-/* Coin bas droit */
-.corner-bottom-right {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-}
-
-.corner-bottom-right .h-line {
-    width: 420px;
-    height: 4px;
-    background: #0f0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-.corner-bottom-right .v-line {
-    width: 4px;
-    height: 55px;
-    background: #0f0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-
-.text1 {
-    color: rgb(255, 255, 255);        /* couleur du texte */
-    font-size: 34px;         /* taille */
-    font-weight: bold;       /* épaisseur */
-    font-family: 'Orbitron', sans-serif;
-    text-decoration: none; /* enlève la barre (soulignement) */
-    position: relative;
-    left: 33%;
-    top: 27%;
-  }
-
-.menu a.color {
-    color: #0f0;
-}
-
-
-
-
-.rectangle-green2 {
-    width: 570px;          /* légèrement plus grand pour dépasser rectangle2 */
-    height: 310px;
+    top: 15px;      /* Décalage vers le bas */
+    left: 15px;     /* Décalage vers la droite */
+    width: 100%;    /* Prend toute la largeur du parent */
+    height: 100%;   /* Prend toute la hauteur du parent */
     background-color: #0f0;
-    position: absolute;
-    top: 33%;              
-    left: 13.5%;
-    z-index: 1;            /* derrière rectangle2 */
+    z-index: 1;     /* Derrière le noir */
+    
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
     border-top-right-radius: 30px;
     border-bottom-left-radius: 30px;
-    box-shadow:
-      0 0 15px rgba(255, 255, 255, 0.3),
-      0 0 40px rgba(255, 255, 255, 0.1);
-}
-/* RECTANGLE CYBER */
-.rectangle3 {
-    width: 570px;
-    height: 310px;
-    background: black;
-    position: absolute;
-    top: 30%;
-    left: 12%;
-    z-index: 2;            /* devant rectangle vert */
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 30px;
-    border-bottom-left-radius: 30px;
-    box-shadow:
-      0 0 15px rgba(0,255,0,0.3),
-      0 0 40px rgba(255,255,255,0.1);
+    
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-/* Coin haut gauche */
-.corner-top-left3 {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-}
-
-.corner-top-left3 .h-line3 {
-    width: 420px;
-    height: 4px;
-    background: #0f0;
-}
-.corner-top-left3 .v-line3 {
-    width: 4px;
-    height: 145px;
-    background: #0f0;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-/* Coin bas droit */
-.corner-bottom-right3 {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-}
-
-.corner-bottom-right3 .h-line3 {
-    width: 420px;
-    height: 4px;
-    background: #0f0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-.corner-bottom-right3 .v-line3 {
-    width: 4px;
-    height: 145px;
-    background: #0f0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-
-  .image1 {
-    width: 210px;  /* taille fixe pour le logo */
-    height: auto;
-    position: absolute;
-    top: 10%;
-    left: 10%;
-}
-
-.text3 {
-    color: rgb(255, 255, 255);        /* couleur du texte */
-    font-size: 30px;         /* taille */
-    font-weight: bold;       /* épaisseur */
-    font-family: 'Orbitron', sans-serif;
-    position: absolute;
-    left: 50%;
-    top: 5%;
-  }
-
-
-.rectangle-green3 {
-    width: 1130px;          /* légèrement plus grand pour dépasser rectangle2 */
-    height: 450px;
-    background-color: #0f0;
-    position: absolute;
-    top: 48%;              
-    left: 30.5%;
-    z-index: 1;            /* derrière rectangle2 */
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 30px;
-    border-bottom-left-radius: 30px;
-    box-shadow:
-      0 0 15px rgba(255, 255, 255, 0.3),
-      0 0 40px rgba(255, 255, 255, 0.1);
-}
-/* RECTANGLE CYBER */
-.rectangle4 {
-    width: 1130px;
-    height: 450px;
-    background: black;
-    position: absolute;
-    top: 45%;
-    left: 29%;
-    z-index: 2;            /* devant rectangle vert */
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 30px;
-    border-bottom-left-radius: 30px;
-    box-shadow:
-      0 0 15px rgba(0,255,0,0.3),
-      0 0 40px rgba(255,255,255,0.1);
-}
-
-/* Coin haut gauche */
-.corner-top-left4 {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-}
-
-.corner-top-left4 .h-line4 {
-    width: 420px;
-    height: 4px;
-    background: #0f0;
-}
-.corner-top-left4 .v-line4 {
-    width: 4px;
-    height: 145px;
-    background: #0f0;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-/* Coin bas droit */
-.corner-bottom-right4 {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-}
-
-.corner-bottom-right4 .h-line4 {
-    width: 420px;
-    height: 4px;
-    background: #0f0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-.corner-bottom-right4 .v-line4 {
-    width: 4px;
-    height: 145px;
-    background: #0f0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-
-.text2 {
-    color: rgb(255, 255, 255);        /* couleur du texte */
-    font-size: 20px;         /* taille */
-    font-weight: 0;       /* épaisseur */
-    font-family: 'Orbitron', sans-serif;
-    text-decoration: none; /* enlève la barre (soulignement) */
+/* 3. La Couche NOIRE (Devant) */
+.black-layer {
     position: relative;
+    z-index: 2;     /* Devant le vert */
+    background: black;
+    width: 100%;    /* Prend toute la place */
+    
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    
+    box-shadow:
+      0 0 15px rgba(0,255,0,0.3),
+      0 0 40px rgba(255,255,255,0.1);
+      
+    /* Centrage du contenu interne */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    left: 2%;
-    top:5%;
-  }
+}
+
+/* ========== DÉCORATIONS (LIGNES) ========== */
+.corner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+.top-left { top: 10px; left: 10px; }
+.bottom-right { bottom: 10px; right: 10px; }
+
+.h-line {
+    width: 40%;
+    height: 4px;
+    background: #0f0;
+    position: absolute;
+}
+.top-left .h-line { top: 0; left: 0; }
+.bottom-right .h-line { bottom: 0; right: 0; }
+
+.v-line {
+    width: 4px;
+    height: 40%;
+    background: #0f0;
+    position: absolute;
+}
+.top-left .v-line { top: 0; left: 0; }
+.bottom-right .v-line { bottom: 0; right: 0; }
+
+/* ========== CONTENU SPÉCIFIQUE ========== */
+
+/* Titre */
+.title-card {
+    width: 90%;
+    max-width: 600px;
+    padding: 30px;
+    /* Pas besoin de stack-wrapper car pas de vert derrière */
+}
+.title-card h1 {
+    margin: 0;
+    font-size: clamp(24px, 5vw, 34px);
+    letter-spacing: 2px;
+}
+
+/* Profil */
+.profile-content {
+    padding: 30px;
+}
+
+.profile-img {
+    width: 150px;
+    height: auto;
+    border-radius: 50%;
+    border: 2px solid #0f0;
+    box-shadow: 0 0 15px #0f0;
+    margin-bottom: 20px;
+}
+
+.profile-content h2 {
+    font-size: 28px;
+    margin: 0;
+}
+
+/* Description */
+.description-content {
+    padding: 60px 40px;
+    text-align: left; /* Texte aligné à gauche */
+}
+
+.description-text {
+    font-size: 18px;
+    line-height: 1.6;
+    font-weight: 0;
+}
+
+.description-text strong {
+    color: #0f0;
+}
+
+/* ========== RESPONSIVE MOBILE ========== */
+@media (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+    }
+    
+    .description-content {
+        padding: 40px 20px;
+        text-align: center; /* Sur mobile, on centre pour faire joli */
+    }
+    
+    .description-text {
+        font-size: 16px;
+    }
+
+    /* Ajustement des lignes déco sur petit écran */
+    .h-line { width: 30%; }
+    .v-line { height: 30%; }
+}

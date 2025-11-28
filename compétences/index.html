@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
     <title>Portfolio / COMPÉTENCES</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="../image/image 7.png" />
 </head>
@@ -12,57 +12,42 @@
 <body>
     <canvas id="matrixCanvas"></canvas>
 
-    <!-- MENU DÉROULANT -->
-    <div class="menu" id="menu">
-        <a href="../à propos/index.html">À propos</a>
-        <a href="./index.html" class="color">Compétences</a>
-        <a href="../projets/index.html">Projets</a>
-        <a href="../index.html" class="image">
-            <img src="../image/image 7.png">
-        </a>
-        <a href="../expérience/index.html">Expérience</a>
-        <a href="../certifications/index.html">Certifications</a>
-        <a href="../contact/index.html">Contact</a>
+    <div class="main-wrapper">
+
+        <nav class="menu">
+            <a href="../à propos/index.html">À propos</a>
+            <a href="./index.html" class="color">Compétences</a>
+            <a href="../projets/index.html">Projets</a>
+            <a href="../index.html" class="menu-logo">
+                <img src="../image/image 7.png" alt="Logo">
+            </a>
+            <a href="../expérience/index.html">Expérience</a>
+            <a href="../certifications/index.html">Certifications</a>
+            <a href="../contact/index.html">Contact</a>
+        </nav>
+
+        <div class="cyber-card title-card">
+            <div class="corner top-left"><div class="h-line"></div><div class="v-line"></div></div>
+            <div class="corner bottom-right"><div class="h-line"></div><div class="v-line"></div></div>
+            <h1>COMPÉTENCES</h1>
+        </div>
+
+        <div class="stack-wrapper">
+            
+            <div class="green-layer"></div>
+
+            <div class="black-layer content-card">
+                <div class="corner top-left"><div class="h-line"></div><div class="v-line"></div></div>
+                <div class="corner bottom-right"><div class="h-line"></div><div class="v-line"></div></div>
+                
+                <div class="image-container">
+                    <img src="../image/Group 7.png" alt="Mes Compétences" class="skills-img">
+                </div>
+            </div>
+
+        </div>
+
     </div>
-
-    <div class="rectangle">
-
-    <!-- Coin haut gauche -->
-    <div class="corner-top-left">
-        <div class="h-line"></div>
-        <div class="v-line"></div>
-    </div>
-
-    <!-- Coin bas droit -->
-    <div class="corner-bottom-right">
-        <div class="h-line"></div>
-        <div class="v-line"></div>
-    </div>
-
-    <p class="text1">COMPÉTENCES</p>
-
-    </div>
-
-    
-<div class="rectangle-green2"></div> <!-- Nouveau rectangle vert derrière -->
-
-<div class="rectangle3">
-
-    <div class="corner-top-left3">
-        <div class="h-line3"></div>
-        <div class="v-line3"></div>
-    </div>
-
-    <div class="corner-bottom-right3">
-        <div class="h-line3"></div>
-        <div class="v-line3"></div>
-    </div>
-
-    <img src="../image/Group 7.png" class="image1">
-
-
-</div>
-
 
     <script src="script.js"></script>
 </body>

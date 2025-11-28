@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
     <title>Portfolio / CERTIFICATIONS</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="../image/image 7.png" />
 </head>
@@ -12,61 +12,44 @@
 <body>
     <canvas id="matrixCanvas"></canvas>
 
-    <!-- MENU DÉROULANT -->
-    <div class="menu" id="menu">
-        <a href="../à propos/index.html">À propos</a>
-        <a href="../compétences/index.html">Compétences</a>
-        <a href="../projets/index.html">Projets</a>
-        <a href="../index.html" class="image">
-            <img src="../image/image 7.png">
-        </a>
-        <a href="../expérience/index.html">Expérience</a>
-        <a href="./index.html" class="color">Certifications</a>
-        <a href="../contact/index.html">Contact</a>
-    </div>
+    <div class="main-wrapper">
 
-    <div class="rectangle">
+        <nav class="menu">
+            <a href="../à propos/index.html">À propos</a>
+            <a href="../compétences/index.html">Compétences</a>
+            <a href="../projets/index.html">Projets</a>
+            <a href="../index.html" class="menu-logo">
+                <img src="../image/image 7.png" alt="Logo">
+            </a>
+            <a href="../expérience/index.html">Expérience</a>
+            <a href="./index.html" class="color">Certifications</a>
+            <a href="../contact/index.html">Contact</a>
+        </nav>
 
-    <!-- Coin haut gauche -->
-    <div class="corner-top-left">
-        <div class="h-line"></div>
-        <div class="v-line"></div>
-    </div>
+        <div class="cyber-card title-card">
+            <div class="corner top-left"><div class="h-line"></div><div class="v-line"></div></div>
+            <div class="corner bottom-right"><div class="h-line"></div><div class="v-line"></div></div>
+            
+            <h1>CERTIFICATIONS</h1>
+        </div>
 
-    <!-- Coin bas droit -->
-    <div class="corner-bottom-right">
-        <div class="h-line"></div>
-        <div class="v-line"></div>
-    </div>
+        <div class="certs-container">
 
-    <p class="text1">CERTIFICATIONS</p>
+            <div class="cyber-card cert-card">
+                <div class="corner top-left"><div class="h-line"></div><div class="v-line"></div></div>
+                <div class="corner bottom-right"><div class="h-line"></div><div class="v-line"></div></div>
+                
+                <div class="cert-content">
+                    <span class="cert-name">RootMe PRO :</span>
+                    <a href="https://root-me.pro/profiles" target="_blank" class="cert-link">
+                        <img src="../image/RMP-logo.png" alt="Logo RootMe">
+                    </a>
+                </div>
+            </div>
 
-    </div>
-
-    
-    
-    <div class="rectangle2">
-
-    <!-- Coin haut gauche -->
-    <div class="corner-top-left2">
-        <div class="h-line2"></div>
-        <div class="v-line2"></div>
-    </div>
-
-    <!-- Coin bas droit -->
-    <div class="corner-bottom-right2">
-        <div class="h-line2"></div>
-        <div class="v-line2"></div>
-    </div>
-
-    <p class="text2">RootMe PRO :</p>
-
-    <a href="https://root-me.pro/profiles" target="_blank" class="image2">
-        <img src="../image/RMP-logo.png">
-    </a>
+            </div>
 
     </div>
-
 
     <script src="script.js"></script>
 </body>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
     <title>Portfolio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="./image/image 7.png" />
 </head>
@@ -12,57 +12,49 @@
 <body>
     <canvas id="matrixCanvas"></canvas>
 
-    <div class="rectangle2">
+    <div class="main-container">
+        
+        <div class="rectangle-cyber rect-small">
+            <div class="corner-decoration top-left">
+                <div class="h-line"></div><div class="v-line"></div>
+            </div>
+            <div class="corner-decoration bottom-right">
+                <div class="h-line"></div><div class="v-line"></div>
+            </div>
 
-        <!-- Coin haut gauche -->
-        <div class="corner-top-left2">
-            <div class="h-line2"></div>
-            <div class="v-line2"></div>
+            <div class="content-centered">
+                <a href="./index.html" class="text-title">BIENVENUE</a>
+            </div>
         </div>
 
-        <!-- Coin bas droit -->
-        <div class="corner-bottom-right2">
-            <div class="h-line2"></div>
-            <div class="v-line2"></div>
+        <div class="rectangle-cyber rect-medium">
+            <div class="corner-decoration top-left">
+                <div class="h-line"></div><div class="v-line"></div>
+            </div>
+            <div class="corner-decoration bottom-right">
+                <div class="h-line"></div><div class="v-line"></div>
+            </div>
+
+            <div class="math-zone">
+                <span>0 + 1 =</span>
+                <input id="answer" maxlength="1" autocomplete="off" inputmode="numeric">
+            </div>
         </div>
 
-        <a href="./index.html" class="text1">BIENVENUE</a>
+        <nav class="menu" id="menu">
+            <a href="./à propos/index.html">À propos</a>
+            <a href="./compétences/index.html">Compétences</a>
+            <a href="./projets/index.html">Projets</a>
+            
+            <a href="./index.html" class="menu-logo">
+                <img src="./image/image 7.png" alt="Logo">
+            </a>
+            
+            <a href="./expérience/index.html">Expérience</a>
+            <a href="./certifications/index.html">Certifications</a>
+            <a href="./contact/index.html">Contact</a>
+        </nav>
 
-    </div>
-
-    <div class="rectangle">
-
-        <!-- Coin haut gauche -->
-        <div class="corner-top-left">
-            <div class="h-line"></div>
-            <div class="v-line"></div>
-        </div>
-
-        <!-- Coin bas droit -->
-        <div class="corner-bottom-right">
-            <div class="h-line"></div>
-            <div class="v-line"></div>
-        </div>
-
-        <!-- TEXTE + CHAMP -->
-        <div class="math-zone">
-            0 + 1 = 
-            <input id="answer" maxlength="1" autocomplete="off">
-        </div>
-
-    </div>
-
-    <!-- MENU DÉROULANT -->
-    <div class="menu" id="menu">
-        <a href="./à propos/index.html">À propos</a>
-        <a href="./compétences/index.html">Compétences</a>
-        <a href="./projets/index.html">Projets</a>
-        <a href="./index.html" class="image">
-          <img src="./image/image 7.png">
-        </a>
-        <a href="./expérience/index.html">Expérience</a>
-        <a href="./certifications/index.html">Certifications</a>
-        <a href="./contact/index.html">Contact</a>
     </div>
 
     <script src="script.js"></script>

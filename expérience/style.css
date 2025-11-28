@@ -1,7 +1,17 @@
+/* ========== RESET & GLOBAL ========== */
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
-    overflow: hidden;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
     background-color: black;
+    font-family: 'Orbitron', sans-serif;
+    overflow-x: hidden;
+    color: white;
 }
 
 #matrixCanvas {
@@ -13,376 +23,231 @@ body {
     z-index: -1;
 }
 
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 50px;
+    width: 100%;
+    max-width: 1400px; /* Un peu plus large pour faire tenir les 2 blocs */
+    margin: 0 auto;
+}
 
+/* ========== MENU ========== */
 .menu {
-    width: 1060px;
-    margin: 20px auto;
-    background: #000;
+    width: 100%;
+    max-width: 1060px;
+    background: black;
     border: 1px solid #0f0;
     display: flex;
-    justify-content: space-around; /* espace entre tous les items */
-    align-items: center;           /* centre verticalement */
-    padding: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    gap: 20px;
     border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,255,0,0.2);
 }
 
 .menu a {
     color: #fff;
-    font-family: 'Orbitron';
     text-decoration: none;
-    font-size: 20px;
-    /* plus besoin de top: 35px */
+    font-size: 18px;
+    transition: 0.3s;
 }
 
-.menu a:hover {
+.menu a:hover, .menu a.color {
     color: #0f0;
 }
 
-.menu a.color:hover {
-    color: #fff;
-}
-
-.menu a.image img {
-    width: 60px;  /* taille fixe pour le logo */
+.menu-logo img {
+    width: 50px;
     height: auto;
+    vertical-align: middle;
 }
 
+/* ========== BOÎTES & COUCHES ========== */
 
-
-
-/* RECTANGLE CYBER */
-.rectangle {
-    width: 590px;
-    height: 100px;
+/* Titre */
+.cyber-card {
     background: black;
     position: relative;
-    margin: 50px auto;
-
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-
-    border-top-right-radius: 30px;
-    border-bottom-left-radius: 30px;
-
-    box-shadow:
-      0 0 15px rgba(0,255,0,0.3),
-      0 0 40px rgba(255,255,255,0.1);
-}
-
-/* Coin haut gauche */
-.corner-top-left {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-}
-
-.corner-top-left .h-line {
-    width: 420px;
-    height: 4px;
-    background: #0f0;
-}
-.corner-top-left .v-line {
-    width: 4px;
-    height: 55px;
-    background: #0f0;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-/* Coin bas droit */
-.corner-bottom-right {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-}
-
-.corner-bottom-right .h-line {
-    width: 420px;
-    height: 4px;
-    background: #0f0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-.corner-bottom-right .v-line {
-    width: 4px;
-    height: 55px;
-    background: #0f0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-
-.text1 {
-    color: rgb(255, 255, 255);        /* couleur du texte */
-    font-size: 34px;         /* taille */
-    font-weight: bold;       /* épaisseur */
-    font-family: 'Orbitron', sans-serif;
-    text-decoration: none; /* enlève la barre (soulignement) */
-    position: relative;
-    left: 28%;
-    top: 27%;
-  }
-
-.menu a.color {
-    color: #0f0;
-}
-
-.rectangle-green2 {
-    width: 590px;          /* légèrement plus grand pour dépasser rectangle2 */
-    height: 490px;
-    background-color: #0f0;
-    position: absolute;
-    top: 33%;              
-    left: 13.5%;
-    z-index: 1;            /* derrière rectangle2 */
+    width: 90%;
+    max-width: 600px;
+    padding: 30px;
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
     border-top-right-radius: 30px;
     border-bottom-left-radius: 30px;
-    box-shadow:
-      0 0 15px rgba(255, 255, 255, 0.3),
-      0 0 40px rgba(255, 255, 255, 0.1);
-}
-/* RECTANGLE CYBER */
-.rectangle3 {
-    width: 590px;
-    height: 490px;
-    background: black;
-    position: absolute;
-    top: 30%;
-    left: 12%;
-    z-index: 2;            /* devant rectangle vert */
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 30px;
-    border-bottom-left-radius: 30px;
-    box-shadow:
-      0 0 15px rgba(0,255,0,0.3),
-      0 0 40px rgba(255,255,255,0.1);
-}
-
-/* Coin haut gauche */
-.corner-top-left3 {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-}
-
-.corner-top-left3 .h-line3 {
-    width: 420px;
-    height: 4px;
-    background: #0f0;
-}
-.corner-top-left3 .v-line3 {
-    width: 4px;
-    height: 145px;
-    background: #0f0;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-/* Coin bas droit */
-.corner-bottom-right3 {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-}
-
-.corner-bottom-right3 .h-line3 {
-    width: 420px;
-    height: 4px;
-    background: #0f0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-.corner-bottom-right3 .v-line3 {
-    width: 4px;
-    height: 145px;
-    background: #0f0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-
-.text2_1 {
-    color: #0f0;        /* couleur du texte */
-    font-size: 30px;         /* taille */
-    font-weight: bold;       /* épaisseur */
-    font-family: 'Orbitron', sans-serif;
-    position: relative;
-    left: 8%;
-    top: 0%;
-  }
-
-.text2_2 {
-    color: rgb(255, 255, 255);        /* couleur du texte */
-    font-size: 20px;         /* taille */
-    font-weight: bold;       /* épaisseur */
-    font-family: 'Orbitron', sans-serif;
-    position: relative;
-    left: 8%;
-    top: -6%;
-  }
-
-.text2_3 {
-    color: #0f0;        /* couleur du texte */
-    font-size: 17px;         /* taille */
-    font-weight: 0;       /* épaisseur */
-    font-family: 'Orbitron', sans-serif;
-    position: relative;
-    left: 8%;
-    top: -9%;
-  }
-
-  .text2_4 {
-    color: rgb(255, 255, 255);        /* couleur du texte */
-    font-size: 34px;         /* taille */
-    font-weight: 0;       /* épaisseur */
-    font-family: 'Orbitron', sans-serif;
-    position: relative;
+    box-shadow: 0 0 15px rgba(0,255,0,0.3);
     text-align: center;
-    left: -0.5%;
-    top: 0%;
-  }
-
-  .image1 {
-    width: 130px;  /* taille fixe pour le logo */
-    height: auto;
-    position: absolute;
-    top: 1%;
-    left: 77%;
 }
 
+.title-card h1 {
+    margin: 0;
+    font-size: clamp(24px, 5vw, 34px);
+    letter-spacing: 2px;
+}
 
-.rectangle-green3 {
-    width: 590px;          /* légèrement plus grand pour dépasser rectangle2 */
-    height: 490px;
+/* Grille pour les expériences */
+.experience-grid {
+    display: flex;
+    justify-content: center;
+    gap: 50px; /* Espace entre les deux expériences */
+    width: 100%;
+    flex-wrap: wrap; /* Important pour le mobile */
+}
+
+/* Wrapper pour l'effet de couche */
+.stack-wrapper {
+    position: relative;
+    width: 90%;
+    max-width: 590px;
+    min-height: 400px; /* Hauteur minimum */
+    display: flex; /* Pour que les enfants prennent la taille */
+}
+
+/* Couche VERTE (Derrière) */
+.green-layer {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 100%;
+    height: 100%;
     background-color: #0f0;
-    position: absolute;
-    top: 33%;              
-    left: 58.5%;
-    z-index: 1;            /* derrière rectangle2 */
+    z-index: 1;
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
     border-top-right-radius: 30px;
     border-bottom-left-radius: 30px;
-    box-shadow:
-      0 0 15px rgba(255, 255, 255, 0.3),
-      0 0 40px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-/* RECTANGLE CYBER */
-.rectangle4 {
-    width: 590px;
-    height: 490px;
+/* Couche NOIRE (Devant) */
+.black-layer {
+    position: relative;
+    z-index: 2;
     background: black;
-    position: absolute;
-    top: 30%;
-    left: 57%;
-    z-index: 2;            /* devant rectangle vert */
+    width: 100%;
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
     border-top-right-radius: 30px;
     border-bottom-left-radius: 30px;
-    box-shadow:
-      0 0 15px rgba(0,255,0,0.3),
-      0 0 40px rgba(255,255,255,0.1);
+    box-shadow: 0 0 15px rgba(0,255,0,0.3);
+    
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
 }
 
-/* Coin haut gauche */
-.corner-top-left4 {
-    position: absolute;
-    top: 10px;
-    left: 10px;
+/* ========== CONTENU INTERNE CARTE ========== */
+.exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    width: 100%;
 }
 
-.corner-top-left4 .h-line4 {
-    width: 420px;
-    height: 4px;
-    background: #0f0;
-}
-.corner-top-left4 .v-line4 {
-    width: 4px;
-    height: 145px;
-    background: #0f0;
-    position: absolute;
-    top: 0;
-    left: 0;
+.exp-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
-/* Coin bas droit */
-.corner-bottom-right4 {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
+.company-name {
+    color: #0f0;
+    font-size: 24px;
+    margin: 0;
 }
 
-.corner-bottom-right4 .h-line4 {
-    width: 420px;
-    height: 4px;
-    background: #0f0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-.corner-bottom-right4 .v-line4 {
-    width: 4px;
-    height: 145px;
-    background: #0f0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
+.job-title {
+    color: white;
+    font-size: 18px;
+    margin: 0;
 }
 
-.text3_1 {
-    color: #0f0;        /* couleur du texte */
-    font-size: 30px;         /* taille */
-    font-weight: bold;       /* épaisseur */
-    font-family: 'Orbitron', sans-serif;
-    position: relative;
-    left: 8%;
-    top: 0%;
-  }
+.duration {
+    color: #0f0;
+    font-size: 14px;
+    margin: 0;
+    font-style: italic;
+}
 
-.text3_2 {
-    color: rgb(255, 255, 255);        /* couleur du texte */
-    font-size: 20px;         /* taille */
-    font-weight: bold;       /* épaisseur */
-    font-family: 'Orbitron', sans-serif;
-    position: relative;
-    left: 8%;
-    top: -6%;
-  }
-
-.text3_3 {
-    color: #0f0;        /* couleur du texte */
-    font-size: 17px;         /* taille */
-    font-weight: 0;       /* épaisseur */
-    font-family: 'Orbitron', sans-serif;
-    position: relative;
-    left: 8%;
-    top: -9%;
-  }
-
-  .text3_4 {
-    color: rgb(255, 255, 255);        /* couleur du texte */
-    font-size: 34px;         /* taille */
-    font-weight: 0;       /* épaisseur */
-    font-family: 'Orbitron', sans-serif;
-    position: relative;
-    left: -0.5%;
-    top: 0%;
-    text-align:center;
-  }
-
-  .image2 {
-    width: 130px;  /* taille fixe pour le logo */
+.exp-logo {
+    width: 100px;
     height: auto;
+    object-fit: contain;
+}
+
+.exp-description {
+    color: white;
+    font-size: 22px;
+    text-align: center;
+    margin-top: auto; /* Pousse le texte vers le bas si possible */
+    margin-bottom: auto;
+    line-height: 1.5;
+}
+
+/* ========== DÉCORATIONS (LIGNES) ========== */
+.corner {
     position: absolute;
-    top: 1%;
-    left: 77%;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+.top-left { top: 10px; left: 10px; }
+.bottom-right { bottom: 10px; right: 10px; }
+
+.h-line {
+    width: 40%;
+    height: 4px;
+    background: #0f0;
+    position: absolute;
+}
+.top-left .h-line { top: 0; left: 0; }
+.bottom-right .h-line { bottom: 0; right: 0; }
+
+.v-line {
+    width: 4px;
+    height: 40%;
+    background: #0f0;
+    position: absolute;
+}
+.top-left .v-line { top: 0; left: 0; }
+.bottom-right .v-line { bottom: 0; right: 0; }
+
+/* ========== RESPONSIVE MOBILE ========== */
+@media (max-width: 900px) {
+    /* Sur tablette et mobile, on empile les expériences */
+    .experience-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .menu {
+        flex-direction: column;
+    }
+    
+    .exp-header {
+        flex-direction: column-reverse; /* Logo au dessus du titre sur mobile */
+        align-items: center;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .exp-logo {
+        width: 80px;
+    }
+    
+    .exp-description {
+        font-size: 18px;
+    }
+
+    /* Réduire les lignes vertes sur petit écran */
+    .h-line { width: 30%; }
+    .v-line { height: 30%; }
 }

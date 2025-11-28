@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
     <title>Portfolio / À PROPOS</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="../image/image 7.png" />
 </head>
@@ -12,88 +12,55 @@
 <body>
     <canvas id="matrixCanvas"></canvas>
 
-    <!-- MENU DÉROULANT -->
-    <div class="menu" id="menu">
-        <a href="./index.html" class="color">À propos</a>
-        <a href="../compétences/index.html">Compétences</a>
-        <a href="../projets/index.html">Projets</a>
-        <a href="../index.html" class="image">
-            <img src="../image/image 7.png">
-        </a>
-        <a href="../expérience/index.html">Expérience</a>
-        <a href="../certifications/index.html">Certifications</a>
-        <a href="../contact/index.html">Contact</a>
+    <div class="main-wrapper">
+
+        <nav class="menu">
+            <a href="./index.html" class="color">À propos</a>
+            <a href="../compétences/index.html">Compétences</a>
+            <a href="../projets/index.html">Projets</a>
+            <a href="../index.html" class="menu-logo">
+                <img src="../image/image 7.png" alt="Logo">
+            </a>
+            <a href="../expérience/index.html">Expérience</a>
+            <a href="../certifications/index.html">Certifications</a>
+            <a href="../contact/index.html">Contact</a>
+        </nav>
+
+        <div class="black-layer title-card">
+            <div class="corner top-left"><div class="h-line"></div><div class="v-line"></div></div>
+            <div class="corner bottom-right"><div class="h-line"></div><div class="v-line"></div></div>
+            <h1>À PROPOS</h1>
+        </div>
+
+        <div class="stack-wrapper profile-stack">
+            <div class="green-layer"></div>
+            
+            <div class="black-layer profile-content">
+                <div class="corner top-left"><div class="h-line"></div><div class="v-line"></div></div>
+                <div class="corner bottom-right"><div class="h-line"></div><div class="v-line"></div></div>
+                
+                <img src="../image/photo-profile 1.png" alt="Alan Guillet" class="profile-img">
+                <h2>Alan Guillet</h2>
+            </div>
+        </div>
+
+        <div class="stack-wrapper description-stack">
+            <div class="green-layer"></div>
+
+            <div class="black-layer description-content">
+                <div class="corner top-left"><div class="h-line"></div><div class="v-line"></div></div>
+                <div class="corner bottom-right"><div class="h-line"></div><div class="v-line"></div></div>
+                
+                <p class="description-text">
+                    Je suis étudiant en première année de Bachelor cybersécurité à la <strong>Guardia Cybersecurity School</strong>.<br><br>
+                    Passionné par les enjeux de sécurité informatique, je cherche à développer mes compétences à travers des stages qui me permettront de découvrir différents aspects du domaine.<br><br>
+                    Mon objectif à long terme est de devenir <strong>pentester</strong>, mais pour le moment je souhaite explorer diverses expériences afin de renforcer ma compréhension globale de la cybersécurité.<br><br>
+                    Curieux et motivé, j’aime relever de nouveaux défis et apprendre en continu pour progresser dans ce secteur en constante évolution.
+                </p>
+            </div>
+        </div>
+
     </div>
-
-    <div class="rectangle">
-
-    <!-- Coin haut gauche -->
-    <div class="corner-top-left">
-        <div class="h-line"></div>
-        <div class="v-line"></div>
-    </div>
-
-    <!-- Coin bas droit -->
-    <div class="corner-bottom-right">
-        <div class="h-line"></div>
-        <div class="v-line"></div>
-    </div>
-
-    <p class="text1">À PROPOS</p>
-
-    </div>
-
-    
-
-<div class="rectangle-green2"></div> <!-- Nouveau rectangle vert derrière -->
-
-<div class="rectangle3">
-
-    <div class="corner-top-left3">
-        <div class="h-line3"></div>
-        <div class="v-line3"></div>
-    </div>
-
-    <div class="corner-bottom-right3">
-        <div class="h-line3"></div>
-        <div class="v-line3"></div>
-    </div>
-
-    <img src="../image/photo-profile 1.png" class="image1">
-    <p class="text3">Alan Guillet</p>
-
-</div>
-
-
-    
-<div class="rectangle-green3"></div> <!-- Nouveau rectangle vert derrière -->
-
-<div class="rectangle4">
-
-    <div class="corner-top-left4">
-        <div class="h-line4"></div>
-        <div class="v-line4"></div>
-    </div>
-
-    <div class="corner-bottom-right4">
-        <div class="h-line4"></div>
-        <div class="v-line4"></div>
-    </div>
-
-    <p class="text2">Je suis étudiant en première année de Bachelor cybersécurité à la Guardia <br><br>
-        Cybersecurity School. 
-Passionné par les enjeux de sécurité informatique, <br><br> 
-je cherche à développer mes compétences à travers des stages qui me permettront <br><br>
-de découvrir différents aspects du domaine. 
-Mon objectif à long terme est de devenir <br><br>
-pentester, mais pour le moment je souhaite explorer diverses expériences <br><br> 
-afin de renforcer ma compréhension globale de la cybersécurité. 
-Curieux et motivé, <br><br>
-j’aime relever de nouveaux défis et apprendre en continu pour progresser <br><br> 
-dans ce secteur en constante évolution.
-</p>
-
-</div>
 
     <script src="script.js"></script>
 </body>
