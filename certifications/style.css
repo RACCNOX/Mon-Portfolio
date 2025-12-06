@@ -67,56 +67,21 @@ body {
     vertical-align: middle;
 }
 
-/* ========== STYLE GÉNÉRIQUE "CYBER CARD" ========== */
+/* ========== STYLE GÉNÉRIQUE & DÉCORATION ========== */
+/* Utilisé pour le titre uniquement */
 .cyber-card {
     background: black;
     position: relative;
-    
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
     border-top-right-radius: 30px;
     border-bottom-left-radius: 30px;
-
-    box-shadow:
-      0 0 15px rgba(0,255,0,0.3),
-      0 0 40px rgba(255,255,255,0.1);
-      
+    box-shadow: 0 0 15px rgba(0,255,0,0.3);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Décorations (Lignes Vertes) */
-.corner {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
-.top-left { top: 10px; left: 10px; }
-.bottom-right { bottom: 10px; right: 10px; }
-
-.h-line {
-    width: 40%;
-    height: 4px;
-    background: #0f0;
-    position: absolute;
-}
-.top-left .h-line { top: 0; left: 0; }
-.bottom-right .h-line { bottom: 0; right: 0; }
-
-.v-line {
-    width: 4px;
-    height: 40%;
-    background: #0f0;
-    position: absolute;
-}
-.top-left .v-line { top: 0; left: 0; }
-.bottom-right .v-line { bottom: 0; right: 0; }
-
-/* ========== CONTENU SPÉCIFIQUE ========== */
-
-/* Titre */
 .title-card {
     width: 90%;
     max-width: 600px;
@@ -130,30 +95,125 @@ body {
     letter-spacing: 2px;
 }
 
-/* Conteneur des Certifications */
+/* Lignes décoratives */
+.corner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+.top-left { top: 10px; left: 10px; }
+.bottom-right { bottom: 10px; right: 10px; }
+
+.h-line {
+    width: 30%;
+    height: 4px;
+    background: #0f0;
+    position: absolute;
+}
+.top-left .h-line { top: 0; left: 0; }
+.bottom-right .h-line { bottom: 0; right: 0; }
+
+.v-line {
+    width: 4px;
+    height: 30%;
+    background: #0f0;
+    position: absolute;
+}
+.top-left .v-line { top: 0; left: 0; }
+.bottom-right .v-line { bottom: 0; right: 0; }
+
+
+/* ========== SYSTÈME DE COUCHES (STACK SYSTEM) ========== */
+
+.stack-wrapper {
+    position: relative;
+    display: flex;
+}
+
+/* Couche VERTE (Derrière) */
+.green-layer {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 100%;
+    height: 100%;
+    background-color: #0f0;
+    z-index: 1;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease; /* Ajout transition */
+}
+
+/* Couche NOIRE (Devant) */
+.black-layer {
+    position: relative;
+    z-index: 2;
+    background: black;
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    box-shadow: 0 0 15px rgba(0,255,0,0.3);
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: box-shadow 0.3s ease; /* Ajout transition */
+}
+
+/* ========== CERTIFICATIONS SPÉCIFIQUE ========== */
+
 .certs-container {
     width: 100%;
     display: flex;
-    flex-direction: column; /* Empile les certifs verticalement */
+    flex-direction: column;
     align-items: center;
-    gap: 40px;
+    gap: 50px;
+    padding-bottom: 20px;
 }
 
-/* Carte Certification Individuelle */
-.cert-card {
+/* Wrapper spécifique pour donner la taille + ANIMATION */
+.cert-stack {
     width: 90%;
     max-width: 600px;
-    padding: 40px;
     min-height: 150px;
+    
+    /* Animation setup */
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+/* L'ANIMATION : Le bloc remonte */
+.cert-stack:hover {
+    transform: translateY(-5px);
+}
+
+/* L'ANIMATION : L'ombre s'intensifie */
+.cert-stack:hover .black-layer {
+    box-shadow: 0 0 25px rgba(0,255,0,0.6);
+}
+
+/* La carte noire interne */
+.cert-card {
+    padding: 40px;
+    width: 100%;
 }
 
 .cert-content {
     display: flex;
-    justify-content: space-around; /* Espace entre le texte et l'image */
+    justify-content: space-around;
     align-items: center;
     width: 100%;
-    flex-wrap: wrap; /* Permet de passer à la ligne sur mobile */
+    flex-wrap: wrap;
     gap: 20px;
+    z-index: 3;
 }
 
 .cert-name {
@@ -170,7 +230,6 @@ body {
 
 .cert-link img:hover {
     transform: scale(1.1);
-    filter: drop-shadow(0 0 10px #0f0);
 }
 
 /* ========== RESPONSIVE MOBILE ========== */
@@ -180,7 +239,7 @@ body {
     }
     
     .cert-content {
-        flex-direction: column; /* Texte au dessus, image en dessous */
+        flex-direction: column;
         text-align: center;
     }
     
@@ -188,7 +247,6 @@ body {
         font-size: 24px;
     }
     
-    /* Réduction lignes déco sur mobile */
     .h-line { width: 30%; }
     .v-line { height: 30%; }
 }

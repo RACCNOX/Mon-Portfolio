@@ -28,7 +28,7 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    gap: 60px; /* Espace entre les gros blocs */
+    gap: 60px;
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
@@ -69,33 +69,23 @@ body {
 
 /* ========== SYSTÈME DE COUCHES (STACKING) ========== */
 
-/* 1. Le Conteneur Principal (Invisible) */
+/* 1. Le Conteneur Principal */
 .stack-wrapper {
-    position: relative; /* Important pour que les enfants se positionnent par rapport à lui */
-    width: 90%; /* Largeur responsive */
+    position: relative;
+    width: 90%;
     display: flex;
     justify-content: center;
-}
-
-/* Taille spécifique pour le profil */
-.profile-stack {
-    max-width: 600px;
-}
-
-/* Taille spécifique pour la description */
-.description-stack {
-    max-width: 1130px;
 }
 
 /* 2. La Couche VERTE (Derrière) */
 .green-layer {
     position: absolute;
-    top: 15px;      /* Décalage vers le bas */
-    left: 15px;     /* Décalage vers la droite */
-    width: 100%;    /* Prend toute la largeur du parent */
-    height: 100%;   /* Prend toute la hauteur du parent */
+    top: 15px;
+    left: 15px;
+    width: 100%;
+    height: 100%;
     background-color: #0f0;
-    z-index: 1;     /* Derrière le noir */
+    z-index: 1;
     
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -103,32 +93,85 @@ body {
     border-bottom-left-radius: 30px;
     
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    
+    /* ANIMATION : Fluidité */
+    transition: all 0.3s ease;
 }
 
 /* 3. La Couche NOIRE (Devant) */
 .black-layer {
     position: relative;
-    z-index: 2;     /* Devant le vert */
+    z-index: 2;
     background: black;
-    width: 100%;    /* Prend toute la place */
+    width: 100%;
     
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
     border-top-right-radius: 30px;
     border-bottom-left-radius: 30px;
     
-    box-shadow:
-      0 0 15px rgba(0,255,0,0.3),
-      0 0 40px rgba(255,255,255,0.1);
+    box-shadow: 0 0 15px rgba(0,255,0,0.3);
       
     /* Centrage du contenu interne */
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    
+    /* ANIMATION : Fluidité de l'ombre */
+    transition: box-shadow 0.3s ease;
 }
 
-/* ========== DÉCORATIONS (LIGNES) ========== */
+/* ========== BLOCS SPÉCIFIQUES & ANIMATIONS ========== */
+
+/* --- BLOC PROFIL --- */
+.profile-stack {
+    max-width: 600px;
+    /* Prépare l'animation du bloc entier */
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+/* Animation Bloc Profil (Saut) */
+.profile-stack:hover {
+    transform: translateY(-5px);
+}
+.profile-stack:hover .black-layer {
+    box-shadow: 0 0 25px rgba(0,255,0,0.6);
+}
+
+/* --- BLOC DESCRIPTION --- */
+.description-stack {
+    max-width: 1130px;
+    /* Prépare l'animation du bloc entier */
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+/* Animation Bloc Description (Saut) */
+.description-stack:hover {
+    transform: translateY(-5px);
+}
+.description-stack:hover .black-layer {
+    box-shadow: 0 0 25px rgba(0,255,0,0.6);
+}
+
+
+/* ========== TITRE (Statique) ========== */
+.cyber-card {
+    background: black;
+    position: relative;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    box-shadow: 0 0 15px rgba(0,255,0,0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* DÉCORATIONS (LIGNES) */
 .corner {
     position: absolute;
     width: 100%;
@@ -156,14 +199,13 @@ body {
 .top-left .v-line { top: 0; left: 0; }
 .bottom-right .v-line { bottom: 0; right: 0; }
 
-/* ========== CONTENU SPÉCIFIQUE ========== */
+/* ========== CONTENU INTERNE ========== */
 
 /* Titre */
 .title-card {
     width: 90%;
     max-width: 600px;
     padding: 30px;
-    /* Pas besoin de stack-wrapper car pas de vert derrière */
 }
 .title-card h1 {
     margin: 0;
@@ -176,6 +218,7 @@ body {
     padding: 30px;
 }
 
+/* --- C'EST ICI QUE J'AI AJOUTÉ L'ANIMATION DE L'IMAGE --- */
 .profile-img {
     width: 150px;
     height: auto;
@@ -183,6 +226,14 @@ body {
     border: 2px solid #0f0;
     box-shadow: 0 0 15px #0f0;
     margin-bottom: 20px;
+    
+    /* Ajout de la transition pour le zoom */
+    transition: transform 0.3s ease;
+}
+
+/* Le zoom au survol de l'image */
+.profile-img:hover {
+    transform: scale(1.1);
 }
 
 .profile-content h2 {
@@ -193,7 +244,7 @@ body {
 /* Description */
 .description-content {
     padding: 60px 40px;
-    text-align: left; /* Texte aligné à gauche */
+    text-align: left;
 }
 
 .description-text {
@@ -214,14 +265,13 @@ body {
     
     .description-content {
         padding: 40px 20px;
-        text-align: center; /* Sur mobile, on centre pour faire joli */
+        text-align: center;
     }
     
     .description-text {
         font-size: 16px;
     }
 
-    /* Ajustement des lignes déco sur petit écran */
     .h-line { width: 30%; }
     .v-line { height: 30%; }
 }

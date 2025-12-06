@@ -30,7 +30,7 @@ body {
     padding: 20px;
     gap: 50px;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px; /* J'ai élargi un peu le conteneur global */
     margin: 0 auto;
 }
 
@@ -67,56 +67,20 @@ body {
     vertical-align: middle;
 }
 
-/* ========== STYLE GÉNÉRIQUE "CYBER CARD" ========== */
+/* ========== STYLE GÉNÉRIQUE & DÉCORATION ========== */
 .cyber-card {
     background: black;
     position: relative;
-    
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
     border-top-right-radius: 30px;
     border-bottom-left-radius: 30px;
-
-    box-shadow:
-      0 0 15px rgba(0,255,0,0.3),
-      0 0 40px rgba(255,255,255,0.1);
-      
+    box-shadow: 0 0 15px rgba(0,255,0,0.3);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Décorations (Lignes) */
-.corner {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
-.top-left { top: 10px; left: 10px; }
-.bottom-right { bottom: 10px; right: 10px; }
-
-.h-line {
-    width: 30%; /* Pourcentage au lieu de pixels fixes */
-    height: 4px;
-    background: #0f0;
-    position: absolute;
-}
-.top-left .h-line { top: 0; left: 0; }
-.bottom-right .h-line { bottom: 0; right: 0; }
-
-.v-line {
-    width: 4px;
-    height: 30%; /* Pourcentage au lieu de pixels fixes */
-    background: #0f0;
-    position: absolute;
-}
-.top-left .v-line { top: 0; left: 0; }
-.bottom-right .v-line { bottom: 0; right: 0; }
-
-/* ========== CONTENU SPÉCIFIQUE ========== */
-
-/* Titre */
 .title-card {
     width: 90%;
     max-width: 600px;
@@ -130,54 +94,160 @@ body {
     letter-spacing: 2px;
 }
 
-/* --- GRILLE DE CONTACT --- */
+/* Lignes décoratives */
+.corner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+.top-left { top: 10px; left: 10px; }
+.bottom-right { bottom: 10px; right: 10px; }
+
+.h-line {
+    width: 30%;
+    height: 4px;
+    background: #0f0;
+    position: absolute;
+}
+.top-left .h-line { top: 0; left: 0; }
+.bottom-right .h-line { bottom: 0; right: 0; }
+
+.v-line {
+    width: 4px;
+    height: 30%;
+    background: #0f0;
+    position: absolute;
+}
+.top-left .v-line { top: 0; left: 0; }
+.bottom-right .v-line { bottom: 0; right: 0; }
+
+
+/* ========== SYSTÈME DE COUCHES (STACK SYSTEM) ========== */
+
+.stack-wrapper {
+    position: relative;
+    display: flex;
+}
+
+/* Couche VERTE (Derrière) */
+.green-layer {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 100%;
+    height: 100%;
+    background-color: #0f0;
+    z-index: 1;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* Couche NOIRE (Devant) */
+.black-layer {
+    position: relative;
+    z-index: 2;
+    background: black;
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    box-shadow: 0 0 15px rgba(0,255,0,0.3);
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    transition: box-shadow 0.3s ease;
+}
+
+/* ========== GRILLE CONTACT ========== */
 .contact-grid {
     display: flex;
-    flex-wrap: wrap; /* Permet le passage à la ligne */
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 40px;
+    gap: 60px; /* Espace augmenté entre les gros blocs */
     width: 100%;
+    padding-bottom: 20px;
 }
 
-/* Carte de contact individuelle */
+/* --- MODIFICATIONS PRINCIPALES ICI --- */
+
+/* Dimension agrandie pour les cartes */
+.contact-stack {
+    width: 360px;        /* Agrandissement largeur (avant 300px) */
+    min-height: 320px;   /* Agrandissement hauteur (avant 220px) */
+    flex-grow: 0; 
+    flex-shrink: 0;
+    
+    /* Animation du saut */
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+/* L'animation au survol du bloc */
+.contact-stack:hover {
+    transform: translateY(-5px);
+}
+.contact-stack:hover .black-layer {
+    box-shadow: 0 0 25px rgba(0,255,0,0.6);
+}
+
 .contact-card {
-    width: 300px; /* Largeur de base */
-    min-height: 200px;
-    padding: 20px;
-    flex-grow: 1; /* Permet de grandir un peu si besoin */
-    max-width: 400px;
+    min-height: 320px; /* Suit la hauteur du stack */
 }
 
+/* Alignement du contenu interne */
 .card-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 20px;
+    justify-content: center; /* Centre verticalement */
+    gap: 30px; /* Plus d'espace entre le texte et l'image */
     text-align: center;
     width: 100%;
+    z-index: 3;
+    height: 100%; /* Prend toute la hauteur pour bien centrer */
 }
 
+/* Agrandissement du Titre */
 .contact-title {
-    font-size: 24px;
+    font-size: 30px; /* Agrandissement texte (avant 24px) */
     font-weight: bold;
     margin: 0;
     color: white;
 }
 
+/* Agrandissement de l'Image + Correction Alignement */
 .contact-link img {
-    width: 80px; /* Taille icône */
-    height: auto;
-    transition: transform 0.3s ease, filter 0.3s;
-    border-radius: 10px; /* Un peu d'arrondi sur les logos carrés */
+    width: 130px;        /* Largeur fixe */
+    height: 130px;       /* AJOUT : Hauteur fixe identique à la largeur */
+    object-fit: contain; /* AJOUT : L'image s'adapte dans le carré sans être déformée */
+    
+    border-radius: 10px;
+    
+    /* Animation de l'image seule */
+    transition: transform 0.3s ease;
 }
 
 .contact-link img:hover {
-    transform: scale(1.1);
-    filter: drop-shadow(0 0 10px #0f0);
+    transform: scale(1.1); /* Zoom de l'image */
 }
 
 /* ========== RESPONSIVE MOBILE ========== */
+@media (max-width: 950px) {
+    .contact-grid {
+        gap: 60px;
+    }
+}
+
 @media (max-width: 768px) {
     .menu {
         flex-direction: column;
@@ -188,8 +258,14 @@ body {
         align-items: center;
     }
     
+    .contact-stack {
+        width: 90%; /* Sur mobile, on prend la largeur dispo */
+        max-width: 380px;
+        /* On garde une bonne hauteur sur mobile aussi */
+        min-height: 280px; 
+    }
+    
     .contact-card {
-        width: 90%; /* Prend toute la largeur sur mobile */
-        max-width: 400px;
+        min-height: 280px;
     }
 }

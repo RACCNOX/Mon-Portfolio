@@ -30,7 +30,7 @@ body {
     padding: 20px;
     gap: 50px;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
@@ -67,56 +67,20 @@ body {
     vertical-align: middle;
 }
 
-/* ========== STYLE GÉNÉRIQUE "CYBER CARD" ========== */
+/* ========== STYLE GÉNÉRIQUE & DÉCORATION ========== */
 .cyber-card {
     background: black;
     position: relative;
-    
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
     border-top-right-radius: 30px;
     border-bottom-left-radius: 30px;
-
-    box-shadow:
-      0 0 15px rgba(0,255,0,0.3),
-      0 0 40px rgba(255,255,255,0.1);
-      
+    box-shadow: 0 0 15px rgba(0,255,0,0.3);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Décorations (Lignes) */
-.corner {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
-.top-left { top: 10px; left: 10px; }
-.bottom-right { bottom: 10px; right: 10px; }
-
-.h-line {
-    width: 30%; /* Lignes flexibles */
-    height: 4px;
-    background: #0f0;
-    position: absolute;
-}
-.top-left .h-line { top: 0; left: 0; }
-.bottom-right .h-line { bottom: 0; right: 0; }
-
-.v-line {
-    width: 4px;
-    height: 30%; /* Lignes flexibles */
-    background: #0f0;
-    position: absolute;
-}
-.top-left .v-line { top: 0; left: 0; }
-.bottom-right .v-line { bottom: 0; right: 0; }
-
-/* ========== CONTENU SPÉCIFIQUE ========== */
-
-/* Titre */
 .title-card {
     width: 90%;
     max-width: 600px;
@@ -130,57 +94,168 @@ body {
     letter-spacing: 2px;
 }
 
-/* --- GRILLE DE PROJETS --- */
+/* Lignes décoratives */
+.corner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+.top-left { top: 10px; left: 10px; }
+.bottom-right { bottom: 10px; right: 10px; }
+
+.h-line {
+    width: 30%;
+    height: 4px;
+    background: #0f0;
+    position: absolute;
+}
+.top-left .h-line { top: 0; left: 0; }
+.bottom-right .h-line { bottom: 0; right: 0; }
+
+.v-line {
+    width: 4px;
+    height: 30%;
+    background: #0f0;
+    position: absolute;
+}
+.top-left .v-line { top: 0; left: 0; }
+.bottom-right .v-line { bottom: 0; right: 0; }
+
+
+/* ========== SYSTÈME DE COUCHES (STACK SYSTEM) ========== */
+
+.stack-wrapper {
+    position: relative;
+    display: flex;
+}
+
+/* Couche VERTE (Derrière) */
+.green-layer {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 100%;
+    height: 100%;
+    background-color: #0f0;
+    z-index: 1;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* Couche NOIRE (Devant) */
+.black-layer {
+    position: relative;
+    z-index: 2;
+    background: black;
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    box-shadow: 0 0 15px rgba(0,255,0,0.3);
+    
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    transition: box-shadow 0.3s ease;
+}
+
+/* ========== PROJETS SPÉCIFIQUE ========== */
+
 .projects-grid {
     display: flex;
-    flex-wrap: wrap; /* Permet aux projets de passer à la ligne */
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 40px;
+    gap: 60px; /* Ecartement */
     width: 100%;
+    padding-bottom: 20px;
 }
 
-/* Carte Projet Individuelle */
-.project-card {
-    width: 300px; /* Largeur de base d'un projet */
-    min-height: 250px;
-    padding: 30px;
+/* --- MODIFICATIONS TAILLE ET STRUCTURE --- */
+
+/* Le bloc entier (stack) */
+.project-stack {
+    width: 550px;       /* Beaucoup plus large */
+    min-height: 350px;  /* Plus haut */
     flex-grow: 1;
-    max-width: 400px;
-    transition: transform 0.3s;
+    max-width: 600px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
-.project-card:hover {
-    transform: translateY(-5px); /* Petit effet de survol */
-    box-shadow: 0 0 25px rgba(0,255,0,0.4);
+/* Animation saut */
+.project-stack:hover {
+    transform: translateY(-5px);
 }
 
+.project-stack:hover .black-layer {
+    box-shadow: 0 0 25px rgba(0,255,0,0.6);
+}
+
+/* Contenu interne : Flex pour espacer le haut du bas */
 .card-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 15px;
+    justify-content: space-between; /* Sépare le haut du bas */
     width: 100%;
+    height: 100%; /* Prend toute la hauteur disponible */
+    z-index: 3;
+}
+
+/* Partie haute (Titre + Desc) */
+.project-info-top {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .project-title {
-    font-size: 24px;
+    font-size: 28px; /* Titre plus gros */
     color: white;
-    margin: 0;
+    margin: 0 0 10px 0;
 }
 
 .project-desc {
     color: #0f0;
-    font-size: 14px;
+    font-size: 16px;
     margin: 0;
 }
 
+/* Partie basse (Footer) : Texte + Image à droite */
+.project-footer {
+    display: flex;
+    justify-content: flex-end; /* Tout le monde à droite */
+    align-items: center;       
+    width: 100%;
+    
+    /* On enlève le padding ici pour que l'image retourne au bord */
+    padding-right: 0; 
+}
+
+/* Le Texte "Dépot projet 1" */
+.deposit-text {
+    font-size: 30px;      
+    font-weight: bold;    
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    /* C'EST CETTE LIGNE QUI DÉCALE LE TEXTE VERS LA GAUCHE */
+    margin-right: 60px; /* Plus ce chiffre est grand, plus le texte part à gauche */
+}
+
+/* L'image */
 .project-link img {
     width: 120px;
     height: auto;
-    margin-top: 10px;
     border-radius: 8px;
     transition: transform 0.3s;
+    display: block; /* Évite les espaces fantômes */
 }
 
 .project-link img:hover {
@@ -188,6 +263,12 @@ body {
 }
 
 /* ========== RESPONSIVE MOBILE ========== */
+@media (max-width: 950px) {
+    .projects-grid {
+        gap: 60px;
+    }
+}
+
 @media (max-width: 768px) {
     .menu {
         flex-direction: column;
@@ -198,8 +279,15 @@ body {
         align-items: center;
     }
 
-    .project-card {
+    .project-stack {
         width: 90%;
-        max-width: 400px;
+        max-width: 500px;
+    }
+    
+    /* Sur mobile, on peut centrer le footer ou le garder à droite */
+    .project-footer {
+        flex-direction: column-reverse; /* Image au dessus du texte sur mobile ? ou row */
+        justify-content: center;
+        text-align: center;
     }
 }
