@@ -30,7 +30,7 @@ body {
     padding: 20px;
     gap: 50px;
     width: 100%;
-    max-width: 1400px;
+    max-width: 1400px; /* Assez large pour 2 colonnes */
     margin: 0 auto;
 }
 
@@ -170,19 +170,19 @@ body {
 
 .projects-grid {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne */
     justify-content: center;
     gap: 60px; /* Ecartement */
     width: 100%;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
 }
 
 /* --- MODIFICATIONS TAILLE ET STRUCTURE --- */
 
 /* Le bloc entier (stack) */
 .project-stack {
-    width: 550px;       /* Beaucoup plus large */
-    min-height: 350px;  /* Plus haut */
+    width: 550px;       /* Largeur fixe sur grand écran */
+    min-height: 350px;
     flex-grow: 1;
     max-width: 600px;
     transition: transform 0.3s ease;
@@ -224,6 +224,7 @@ body {
     color: #0f0;
     font-size: 16px;
     margin: 0;
+    line-height: 1.5;
 }
 
 /* Partie basse (Footer) : Texte + Image à droite */
@@ -232,30 +233,26 @@ body {
     justify-content: flex-end; /* Tout le monde à droite */
     align-items: center;       
     width: 100%;
-    
-    /* On enlève le padding ici pour que l'image retourne au bord */
     padding-right: 0; 
 }
 
 /* Le Texte "Dépot projet 1" */
 .deposit-text {
-    font-size: 30px;      
+    font-size: 24px;      
     font-weight: bold;    
     color: white;
     text-transform: uppercase;
     letter-spacing: 1px;
-    
-    /* C'EST CETTE LIGNE QUI DÉCALE LE TEXTE VERS LA GAUCHE */
-    margin-right: 60px; /* Plus ce chiffre est grand, plus le texte part à gauche */
+    margin-right: 30px; /* Espace entre texte et image */
 }
 
 /* L'image */
 .project-link img {
-    width: 120px;
+    width: 100px;
     height: auto;
     border-radius: 8px;
     transition: transform 0.3s;
-    display: block; /* Évite les espaces fantômes */
+    display: block; 
 }
 
 .project-link img:hover {
@@ -284,10 +281,14 @@ body {
         max-width: 500px;
     }
     
-    /* Sur mobile, on peut centrer le footer ou le garder à droite */
     .project-footer {
-        flex-direction: column-reverse; /* Image au dessus du texte sur mobile ? ou row */
+        flex-direction: column-reverse; /* Image au dessus du texte sur mobile */
         justify-content: center;
         text-align: center;
+        gap: 15px;
+    }
+    
+    .deposit-text {
+        margin-right: 0;
     }
 }
