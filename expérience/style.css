@@ -1,281 +1,50 @@
-/* ========== RESET & GLOBAL ========== */
-* {
-    box-sizing: border-box;
+* { box-sizing: border-box; }
+body { margin: 0; padding: 0; width: 100%; min-height: 100vh; background-color: black; font-family: 'Orbitron', sans-serif; overflow-x: hidden; color: white; }
+#matrixCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; }
+.main-wrapper { display: flex; flex-direction: column; align-items: center; padding: 20px; gap: 50px; width: 100%; max-width: 1400px; margin: 0 auto; }
+
+/* MENU */
+.menu { width: 100%; max-width: 1060px; background: black; border: 1px solid #0f0; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; padding: 15px; gap: 20px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,255,0,0.2); }
+.menu a { color: #fff; text-decoration: none; font-size: 18px; transition: 0.3s; }
+.menu a:hover, .menu a.color { color: #0f0; }
+.menu-logo img { width: 50px; height: auto; vertical-align: middle; }
+
+/* TITRE & ANGLES (160x70 - Décalage 12px) */
+.cyber-card { background: black; position: relative; width: 90%; max-width: 600px; padding: 30px; border-radius: 20px 30px 20px 30px; box-shadow: 0 0 15px rgba(0,255,0,0.3); text-align: center; }
+.title-card h1 { margin: 0; font-size: clamp(24px, 5vw, 34px); letter-spacing: 2px; }
+
+.corner { position: absolute; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
+.top-left { top: 12px; left: 12px; }
+.bottom-right { bottom: 12px; right: 12px; }
+.h-line { width: 160px; height: 3px; background: #0f0; position: absolute; top: 0; left: 0; }
+.v-line { width: 3px; height: 70px; background: #0f0; position: absolute; top: 0; left: 0; }
+.bottom-right .h-line, .bottom-right .v-line { top: auto; left: auto; bottom: 0; right: 0; }
+
+/* GRILLE & CARTES */
+.experience-grid { display: flex; justify-content: center; gap: 50px; width: 100%; flex-wrap: wrap; padding-bottom: 20px; }
+.exp-stack { position: relative; width: 90%; max-width: 590px; min-height: 400px; transition: transform 0.3s ease; cursor: pointer; }
+.exp-stack:hover { transform: translateY(-5px); }
+.green-layer { position: absolute; top: 15px; left: 15px; width: 100%; height: 100%; background-color: #0f0; z-index: 1; border-radius: 20px 30px 20px 30px; box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); }
+.black-layer { position: relative; z-index: 2; background: black; width: 100%; height: 100%; border-radius: 20px 30px 20px 30px; box-shadow: 0 0 15px rgba(0,255,0,0.3); display: flex; flex-direction: column; padding: 30px; overflow: hidden; }
+
+.exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px; width: 100%; }
+.company-name { color: #0f0; font-size: 24px; margin: 0; }
+.job-title { color: white; font-size: 18px; margin: 0; }
+.duration { color: #0f0; font-size: 14px; margin: 0; font-style: italic; }
+
+/* ANIMATION PULSATION BLANCHE */
+.pulsing-logo { width: 100px; height: auto; object-fit: contain; animation: logoPulse 2s ease-in-out infinite; }
+@keyframes logoPulse {
+    0% { transform: scale(1); filter: drop-shadow(0 0 2px #ffffff); }
+    50% { transform: scale(1.15); filter: drop-shadow(0 0 10px #ffffff); }
+    100% { transform: scale(1); filter: drop-shadow(0 0 2px #ffffff); }
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100vh;
-    background-color: black;
-    font-family: 'Orbitron', sans-serif;
-    overflow-x: hidden;
-    color: white;
-}
+.exp-description { color: white; font-size: 22px; text-align: center; margin-top: auto; margin-bottom: auto; line-height: 1.5; }
 
-#matrixCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-}
-
-.main-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    gap: 50px;
-    width: 100%;
-    max-width: 1400px; 
-    margin: 0 auto;
-}
-
-/* ========== MENU ========== */
-.menu {
-    width: 100%;
-    max-width: 1060px;
-    background: black;
-    border: 1px solid #0f0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-    gap: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0,255,0,0.2);
-}
-
-.menu a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    transition: 0.3s;
-}
-
-.menu a:hover, .menu a.color {
-    color: #0f0;
-}
-
-.menu-logo img {
-    width: 50px;
-    height: auto;
-    vertical-align: middle;
-}
-
-/* ========== BOÎTES & COUCHES ========== */
-
-/* Titre */
-.cyber-card {
-    background: black;
-    position: relative;
-    width: 90%;
-    max-width: 600px;
-    padding: 30px;
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 30px;
-    border-bottom-left-radius: 30px;
-    box-shadow: 0 0 15px rgba(0,255,0,0.3);
-    text-align: center;
-}
-
-.title-card h1 {
-    margin: 0;
-    font-size: clamp(24px, 5vw, 34px);
-    letter-spacing: 2px;
-}
-
-/* Grille pour les expériences */
-.experience-grid {
-    display: flex;
-    justify-content: center;
-    gap: 50px; 
-    width: 100%;
-    flex-wrap: wrap; 
-    padding-bottom: 20px;
-}
-
-/* Wrapper générique */
-.stack-wrapper {
-    position: relative;
-    display: flex; 
-}
-
-/* Wrapper SPÉCIFIQUE EXPÉRIENCE (Taille + Animation Carte) */
-.exp-stack {
-    width: 90%;
-    max-width: 590px;
-    min-height: 400px;
-    
-    /* Animation de la carte (saut vers le haut) */
-    transition: transform 0.3s ease;
-    cursor: pointer;
-}
-
-.exp-stack:hover {
-    transform: translateY(-5px);
-}
-
-.exp-stack:hover .black-layer {
-    box-shadow: 0 0 25px rgba(0,255,0,0.6);
-}
-
-
-/* Couche VERTE (Derrière) */
-.green-layer {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    width: 100%;
-    height: 100%;
-    background-color: #0f0;
-    z-index: 1;
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 30px;
-    border-bottom-left-radius: 30px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease; 
-}
-
-/* Couche NOIRE (Devant) */
-.black-layer {
-    position: relative;
-    z-index: 2;
-    background: black;
-    width: 100%;
-    height: 100%;
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 30px;
-    border-bottom-left-radius: 30px;
-    box-shadow: 0 0 15px rgba(0,255,0,0.3);
-    
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
-    transition: box-shadow 0.3s ease;
-}
-
-/* ========== CONTENU INTERNE CARTE ========== */
-.exp-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 30px;
-    width: 100%;
-}
-
-.exp-info {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.company-name {
-    color: #0f0;
-    font-size: 24px;
-    margin: 0;
-}
-
-.job-title {
-    color: white;
-    font-size: 18px;
-    margin: 0;
-}
-
-.duration {
-    color: #0f0;
-    font-size: 14px;
-    margin: 0;
-    font-style: italic;
-}
-
-/* --- C'EST ICI QUE J'AI AJOUTÉ L'ANIMATION DE L'IMAGE --- */
-.exp-logo {
-    width: 100px;
-    height: auto;
-    object-fit: contain;
-    /* Ajout de la transition pour la fluidité */
-    transition: transform 0.3s ease;
-}
-
-/* Effet de zoom au survol de l'image uniquement */
-.exp-logo:hover {
-    transform: scale(1.1);
-}
-
-.exp-description {
-    color: white;
-    font-size: 22px;
-    text-align: center;
-    margin-top: auto; 
-    margin-bottom: auto;
-    line-height: 1.5;
-}
-
-/* ========== DÉCORATIONS (LIGNES) ========== */
-.corner {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
-.top-left { top: 10px; left: 10px; }
-.bottom-right { bottom: 10px; right: 10px; }
-
-.h-line {
-    width: 40%;
-    height: 4px;
-    background: #0f0;
-    position: absolute;
-}
-.top-left .h-line { top: 0; left: 0; }
-.bottom-right .h-line { bottom: 0; right: 0; }
-
-.v-line {
-    width: 4px;
-    height: 40%;
-    background: #0f0;
-    position: absolute;
-}
-.top-left .v-line { top: 0; left: 0; }
-.bottom-right .v-line { bottom: 0; right: 0; }
-
-/* ========== RESPONSIVE MOBILE ========== */
-@media (max-width: 900px) {
-    .experience-grid {
-        flex-direction: column;
-        align-items: center;
-        gap: 60px;
-    }
-}
-
+@media (max-width: 900px) { .experience-grid { flex-direction: column; align-items: center; gap: 60px; } }
 @media (max-width: 600px) {
-    .menu {
-        flex-direction: column;
-    }
-    
-    .exp-header {
-        flex-direction: column-reverse; 
-        align-items: center;
-        text-align: center;
-        gap: 15px;
-    }
-
-    .exp-logo {
-        width: 80px;
-    }
-    
-    .exp-description {
-        font-size: 18px;
-    }
-
-    .h-line { width: 30%; }
-    .v-line { height: 30%; }
+    .menu { flex-direction: column; }
+    .exp-header { flex-direction: column-reverse; align-items: center; text-align: center; gap: 15px; }
+    .exp-description { font-size: 18px; }
 }
