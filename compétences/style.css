@@ -145,7 +145,6 @@ body {
     width: auto;
     max-width: 80px;
     object-fit: contain;
-    filter: drop-shadow(0 0 5px rgba(0,255,0,0.5));
 }
 
 .multi-icons {
@@ -156,7 +155,7 @@ body {
 
 /* Visibilité Root-Me */
 .bright-icon {
-    filter: brightness(0) invert(1) drop-shadow(0 0 8px #0f0) !important;
+    filter: brightness(0) invert(1) drop-shadow(0 0 8px rgb(255, 255, 255)) !important;
 }
 
 .skill-name {
