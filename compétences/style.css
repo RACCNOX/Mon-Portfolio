@@ -165,7 +165,7 @@ body {
 
 .v-line {
     width: 3px;
-    height: 70px; /* Tes dimensions conservées */
+    height: 50px; /* Tes dimensions conservées */
     background: #0f0;
     position: absolute;
 }
