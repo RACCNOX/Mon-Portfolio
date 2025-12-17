@@ -1,27 +1,13 @@
-html {
-    -webkit-text-size-adjust: 100%; /* Empêche iOS de grossir le texte tout seul */
-}
-
-/* Vérifie que cette valeur n'est pas trop grande pour ton écran */
-.stack-wrapper {
-    position: relative;
-    height: 200px;
-    max-width: 100%; /* Sécurité pour ne pas déborder */
-    transition: transform 0.3s ease;
-}
-
 /* ========== RESET & GLOBAL ========== */
 * { box-sizing: border-box; }
 
 body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100vh;
+    margin: 0; padding: 0;
+    width: 100%; min-height: 100vh;
     background-color: black;
     font-family: 'Orbitron', sans-serif;
-    overflow-x: hidden;
-    color: white;
+    overflow-x: hidden; color: white;
+    -webkit-text-size-adjust: 100%;
 }
 
 #matrixCanvas {
@@ -32,173 +18,144 @@ body {
 }
 
 .main-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    gap: 40px;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+    display: flex; flex-direction: column;
+    align-items: center; padding: 20px;
+    gap: 40px; width: 100%;
+    max-width: 1200px; margin: 0 auto;
 }
 
 /* ========== MENU ========== */
 .menu {
-    width: 100%;
-    max-width: 1060px;
-    background: black;
-    border: 1px solid #0f0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-    gap: 20px;
-    border-radius: 10px;
+    width: 100%; max-width: 1060px;
+    background: black; border: 1px solid #0f0;
+    display: flex; flex-wrap: wrap;
+    justify-content: center; align-items: center;
+    padding: 15px; gap: 20px; border-radius: 10px;
     box-shadow: 0 0 15px rgba(0,255,0,0.2);
 }
 
 .menu a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    transition: 0.3s;
+    color: #fff; text-decoration: none;
+    font-size: 18px; transition: 0.3s;
 }
 
 .menu a:hover, .menu a.color { color: #0f0; }
 .menu-logo img { width: 50px; height: auto; }
 
-/* ========== TITRE ========== */
+/* ========== TITRE & CARTES ========== */
 .cyber-card {
-    background: black;
-    position: relative;
-    width: 100%;
-    max-width: 600px;
-    padding: 30px;
-    border-radius: 20px 30px 20px 30px;
+    background: black; position: relative;
+    width: 100%; max-width: 600px;
+    padding: 30px; border-radius: 20px 30px 20px 30px;
     box-shadow: 0 0 15px rgba(0,255,0,0.3);
     text-align: center;
 }
 
 .title-card h1 { margin: 0; font-size: clamp(24px, 5vw, 34px); letter-spacing: 2px; }
 
-/* ========== GRILLE DE COMPÉTENCES ========== */
+/* ========== GRILLE ========== */
 .skills-sections-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 60px;
+    width: 100%; display: flex;
+    flex-direction: column; gap: 60px;
 }
 
 .group-title {
-    color: rgb(255, 255, 255);
-    font-size: 18px;
-    text-transform: uppercase;
-    margin-bottom: 25px;
-    border-left: 4px solid rgb(255, 255, 255);
-    padding-left: 15px;
-    letter-spacing: 2px;
+    color: white; font-size: 18px;
+    text-transform: uppercase; margin-bottom: 25px;
+    border-left: 4px solid white;
+    padding-left: 15px; letter-spacing: 2px;
 }
 
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 40px;
-    width: 100%;
+    gap: 40px; width: 100%;
 }
 
+/* STACK SYSTEM */
 .stack-wrapper {
-    position: relative;
-    height: 200px;
+    position: relative; height: 200px;
     transition: transform 0.3s ease;
 }
 
 .stack-wrapper:hover { transform: translateY(-8px); }
 
 .green-layer {
-    position: absolute;
-    top: 10px; left: 10px;
+    position: absolute; top: 10px; left: 10px;
     width: 100%; height: 100%;
-    background-color: #0f0;
-    z-index: 1;
+    background-color: #0f0; z-index: 1;
     border-radius: 20px 30px 20px 30px;
 }
 
 .black-layer {
-    position: relative;
-    background: black;
-    z-index: 2;
-    width: 100%; height: 100%;
+    position: relative; background: black;
+    z-index: 2; width: 100%; height: 100%;
     border-radius: 20px 30px 20px 30px;
     border: 1px solid rgba(0,255,0,0.3);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    gap: 10px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 20px; gap: 10px;
+    overflow: hidden; /* Empêche les coins de déborder */
 }
 
 /* ÉLÉMENTS CARTES */
 .skill-card-content img {
-    height: 50px;
-    width: auto;
-    max-width: 80px;
-    object-fit: contain;
+    height: 50px; width: auto;
+    max-width: 80px; object-fit: contain;
 }
 
-.multi-icons {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-}
+.multi-icons { display: flex; gap: 15px; justify-content: center; }
 
-/* Visibilité Root-Me */
 .bright-icon {
     filter: brightness(0) invert(1) drop-shadow(0 0 8px rgb(255, 255, 255)) !important;
 }
 
 .skill-name {
-    font-size: 15px;
-    font-weight: bold;
-    color: #fff;
-    text-align: center;
-    margin-top: 5px;
+    font-size: 15px; font-weight: bold;
+    color: #fff; text-align: center; margin-top: 5px;
 }
 
 .skill-card-content small {
-    color: #0f0;
-    font-size: 10px;
-    text-transform: uppercase;
-    opacity: 0.8;
+    color: #0f0; font-size: 10px;
+    text-transform: uppercase; opacity: 0.8;
 }
 
 /* BARRES DE NIVEAU */
 .level-bar {
-    width: 85%;
-    height: 6px;
-    background: #111;
-    border: 1px solid #0f0;
-    border-radius: 10px;
-    margin-top: 5px;
-    overflow: hidden;
+    width: 85%; height: 6px;
+    background: #111; border: 1px solid #0f0;
+    border-radius: 10px; margin-top: 5px;
+    overflow: hidden; position: relative; z-index: 3;
 }
 
 .level-fill {
-    height: 100%;
-    background: #0f0;
+    height: 100%; background: #0f0;
     box-shadow: 0 0 10px #0f0;
 }
 
-/* CORNERS */
-.corner { position: absolute; width: 100%; height: 100%; pointer-events: none; }
-.top-left { top: 10px; left: 10px; }
-.bottom-right { bottom: 10px; right: 10px; }
-.h-line { width: 40px; height: 4px; background: #0f0; position: absolute; }
-.v-line { width: 4px; height: 40px; background: #0f0; position: absolute; }
+/* ========== LES COINS (CORNERS) ========== */
+.corner {
+    position: absolute; width: 100%; height: 100%;
+    pointer-events: none; z-index: 5;
+}
+
+.top-left { top: 8px; left: 8px; }
+.bottom-right { bottom: 8px; right: 8px; }
+
+.h-line {
+    width: 160px; height: 3px;
+    background: #0f0; position: absolute;
+}
+
+.v-line {
+    width: 3px; height: 70px;
+    background: #0f0; position: absolute;
+}
+
 .top-left .h-line, .top-left .v-line { top: 0; left: 0; }
 .bottom-right .h-line, .bottom-right .v-line { bottom: 0; right: 0; }
 
+/* RESPONSIVE */
 @media (max-width: 600px) {
     .skills-grid { grid-template-columns: 1fr; }
     .stack-wrapper { height: 180px; }
