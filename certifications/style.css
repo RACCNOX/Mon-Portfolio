@@ -1,176 +1,93 @@
 /* ========== RESET & GLOBAL ========== */
 * { box-sizing: border-box; }
-
 body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100vh;
-    background-color: black;
-    font-family: 'Orbitron', sans-serif;
-    overflow-x: hidden;
-    color: white;
+    margin: 0; padding: 0; width: 100%; min-height: 100vh;
+    background-color: black; font-family: 'Orbitron', sans-serif;
+    overflow-x: hidden; color: white;
 }
-
-#matrixCanvas {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    z-index: -1;
-}
+#matrixCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; }
 
 .main-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    gap: 50px;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 20px; gap: 50px; width: 100%; max-width: 1200px; margin: 0 auto;
 }
 
 /* ========== MENU ========== */
 .menu {
-    width: 100%;
-    max-width: 1060px;
-    background: black;
-    border: 1px solid #0f0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-    gap: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0,255,0,0.2);
+    width: 100%; max-width: 1060px; background: black; border: 1px solid #0f0;
+    display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+    padding: 15px; gap: 20px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,255,0,0.2);
 }
-
-.menu a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    transition: 0.3s;
-}
-
+.menu a { color: #fff; text-decoration: none; font-size: 18px; transition: 0.3s; }
 .menu a:hover, .menu a.color { color: #0f0; }
 .menu-logo img { width: 50px; height: auto; }
 
-/* ========== TITRE ========== */
-.cyber-card {
-    background: black;
-    position: relative;
-    border-radius: 20px 30px 20px 30px;
-    box-shadow: 0 0 15px rgba(0,255,0,0.3);
-}
-
-.title-card {
-    width: 90%;
-    max-width: 600px;
-    padding: 30px;
-    text-align: center;
-}
-
+/* ========== TITRE & ANGLES (160x70, décalage 12px) ========== */
+.cyber-card { background: black; position: relative; border-radius: 20px 30px 20px 30px; box-shadow: 0 0 15px rgba(0,255,0,0.3); }
+.title-card { width: 90%; max-width: 600px; padding: 30px; text-align: center; }
 .title-card h1 { margin: 0; font-size: clamp(24px, 5vw, 34px); letter-spacing: 2px; }
 
-/* CORNERS */
-.corner { position: absolute; width: 100%; height: 100%; pointer-events: none; }
-.top-left { top: 10px; left: 10px; }
-.bottom-right { bottom: 10px; right: 10px; }
-.h-line { width: 30%; height: 4px; background: #0f0; position: absolute; }
-.v-line { width: 4px; height: 30%; background: #0f0; position: absolute; }
+.corner { position: absolute; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
+.top-left { top: 12px; left: 12px; }
+.bottom-right { bottom: 12px; right: 12px; }
+
+.h-line { width: 160px; height: 3px; background: #0f0; position: absolute; }
+.v-line { width: 3px; height: 70px; background: #0f0; position: absolute; }
+
 .top-left .h-line, .top-left .v-line { top: 0; left: 0; }
 .bottom-right .h-line, .bottom-right .v-line { bottom: 0; right: 0; }
 
-/* ========== SYSTEME DE COUCHES ========== */
-.certs-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding-bottom: 50px;
-}
-
-.cert-stack {
-    position: relative;
-    width: 95%;
-    max-width: 800px; /* Plus large pour l'image rectangulaire */
-    transition: transform 0.3s ease;
-}
-
+/* ========== CERTIFICATIONS CONTENU ========== */
+.certs-container { width: 100%; display: flex; justify-content: center; padding-bottom: 50px; }
+.cert-stack { position: relative; width: 95%; max-width: 800px; transition: transform 0.3s ease; }
 .cert-stack:hover { transform: translateY(-10px); }
 
 .green-layer {
-    position: absolute;
-    top: 15px; left: 15px;
-    width: 100%; height: 100%;
-    background-color: #0f0;
-    z-index: 1;
-    border-radius: 20px 30px 20px 30px;
+    position: absolute; top: 15px; left: 15px; width: 100%; height: 100%;
+    background-color: #0f0; z-index: 1; border-radius: 20px 30px 20px 30px;
 }
-
 .black-layer {
-    position: relative;
-    z-index: 2;
-    background: black;
-    width: 100%;
-    border: 1px solid rgba(0,255,0,0.2);
-    border-radius: 20px 30px 20px 30px;
-    padding: 40px;
+    position: relative; z-index: 2; background: black; width: 100%;
+    border: 1px solid rgba(0,255,0,0.2); border-radius: 20px 30px 20px 30px;
+    padding: 40px; overflow: hidden;
 }
 
-/* CONTENU DE LA CARTE */
-.cert-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
-    gap: 20px;
+.cert-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 30px; 
+    flex-wrap: nowrap; /* Empêche le retour à la ligne */
+    gap: 15px; 
 }
+.cert-name { font-size: clamp(18px, 4vw, 24px); font-weight: bold; color: white; white-space: nowrap; }
+.rm-logo { width: clamp(80px, 15vw, 120px); height: auto; }
 
-.cert-name {
-    font-size: 24px;
-    font-weight: bold;
-    color: rgb(255, 255, 255);
-    letter-spacing: 1px;
-}
+.cert-screenshot { position: relative; width: 100%; border: 2px solid #0f0; border-radius: 10px; overflow: hidden; }
+.screen-img { width: 100%; height: auto; display: block; cursor: pointer; transition: 0.3s; }
+.screen-img:hover { filter: brightness(1.2); }
 
-.rm-logo {
-    width: 120px;
-    height: auto;
-}
-
-/* SCREENSHOT SECTION */
-.cert-screenshot {
-    position: relative;
-    width: 100%;
-    border: 2px solid #0f0;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0,255,0,0.1);
-}
-
-.screen-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    filter: brightness(0.9) contrast(1.1);
-}
-
-/* Effet Scanline Cyberpunk sur l'image */
 .scanline {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 255, 0, 0.05) 50%), 
-                linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 255, 0, 0.05) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
     background-size: 100% 4px, 3px 100%;
-    pointer-events: none;
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
-    .menu { flex-direction: column; }
-    .cert-header { justify-content: center; text-align: center; }
+/* ========== MODAL ZOOM ========== */
+.modal {
+    display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.9); backdrop-filter: blur(8px);
+}
+.modal-content {
+    margin: auto; display: block; width: 85%; max-width: 1100px; border: 2px solid #0f0;
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    animation: zoom 0.3s ease;
+}
+@keyframes zoom { from {transform: translate(-50%, -50%) scale(0.6); opacity: 0;} to {transform: translate(-50%, -50%) scale(1); opacity: 1;} }
+.close-modal { position: absolute; top: 20px; right: 35px; color: #0f0; font-size: 50px; cursor: pointer; }
+
+/* RESPONSIVE MOBILE */
+@media (max-width: 600px) {
     .black-layer { padding: 20px; }
+    .cert-header { gap: 10px; }
 }

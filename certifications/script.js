@@ -1,3 +1,37 @@
+// ==========================================
+// 1. GESTION DU ZOOM (LIGHTBOX)
+// ==========================================
+const modal = document.getElementById("imageModal");
+const img = document.getElementById("myImg");
+const modalImg = document.getElementById("imgFull");
+const closeBtn = document.querySelector(".close-modal");
+
+// Vérifie si l'image existe sur la page avant d'ajouter l'événement
+if(img) {
+    img.onclick = function() {
+        modal.style.display = "block";
+        modalImg.src = this.src;
+    }
+}
+
+// Fermer avec la croix
+if(closeBtn) {
+    closeBtn.onclick = function() {
+        modal.style.display = "none";
+    }
+}
+
+// Fermer en cliquant n'importe où sur le fond noir (en dehors de l'image)
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+
+// ==========================================
+// 2. EFFET MATRIX (TON CODE ACTUEL)
+// ==========================================
 const canvas = document.getElementById("matrixCanvas");
 const ctx = canvas.getContext("2d");
 

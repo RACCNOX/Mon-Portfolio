@@ -13,7 +13,6 @@
     <canvas id="matrixCanvas"></canvas>
 
     <div class="main-wrapper">
-        
         <nav class="menu">
             <a href="../à propos/index.html">À propos</a>
             <a href="../compétences/index.html">Compétences</a>
@@ -41,18 +40,21 @@
                     
                     <div class="cert-header">
                         <span class="cert-name">ROOT-ME PRO</span>
-                        <a href="https://root-me.pro/profiles" target="_blank" class="cert-link">
-                            <img src="../image/RMP-logo.png" alt="Logo RootMe" class="rm-logo">
-                        </a>
+                        <img src="../image/RMP-logo.png" alt="Logo RootMe" class="rm-logo">
                     </div>
 
                     <div class="cert-screenshot">
-                        <img src="../image/Compte-rootme.jpg" alt="Mon niveau Root-Me" class="screen-img">
+                        <img src="../image/Compte-rootme.jpg" alt="Mon niveau Root-Me" class="screen-img" id="myImg">
                         <div class="scanline"></div> 
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="imgFull">
     </div>
 
     <script src="script.js"></script>
