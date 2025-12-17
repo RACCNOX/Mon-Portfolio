@@ -1,7 +1,5 @@
 /* ========== RESET & GLOBAL ========== */
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
@@ -16,10 +14,8 @@ body {
 
 #matrixCanvas {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
     z-index: -1;
 }
 
@@ -28,7 +24,7 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    gap: 60px;
+    gap: 40px;
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
@@ -57,184 +53,142 @@ body {
     transition: 0.3s;
 }
 
-.menu a:hover, .menu a.color {
-    color: #0f0;
-}
+.menu a:hover, .menu a.color { color: #0f0; }
+.menu-logo img { width: 50px; height: auto; }
 
-.menu-logo img {
-    width: 50px;
-    height: auto;
-    vertical-align: middle;
-}
-
-/* ========== GESTION DES COUCHES (LAYER SYSTEM) ========== */
-
-/* Le conteneur générique */
-.stack-wrapper {
-    position: relative;
-    display: flex;
-    justify-content: center;
-}
-
-/* CLASSE SPÉCIFIQUE COMPÉTENCES (Taille + Animation du Bloc) */
-.skills-stack {
-    width: 90%;
-    max-width: 650px; 
-    
-    /* Animation du saut */
-    transition: transform 0.3s ease;
-    cursor: pointer;
-}
-
-/* L'ANIMATION : Le bloc saute vers le haut */
-.skills-stack:hover {
-    transform: translateY(-5px);
-}
-
-/* L'ANIMATION : L'ombre verte s'intensifie */
-.skills-stack:hover .black-layer {
-    box-shadow: 0 0 25px rgba(0,255,0,0.6);
-}
-
-
-/* COUCHE 1 : Le Rectangle VERT (Derrière) */
-.green-layer {
-    position: absolute;
-    top: 15px;      
-    left: 15px;     
-    width: 100%;
-    height: 100%;
-    background-color: #0f0;
-    z-index: 1;    
-    
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 30px;
-    border-bottom-left-radius: 30px;
-    
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease; 
-}
-
-/* COUCHE 2 : Le Rectangle NOIR (Devant) */
-.black-layer {
-    position: relative;
-    background: black;
-    z-index: 2;    
-    width: 100%;
-    height: 100%; 
-    
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 30px;
-    border-bottom-left-radius: 30px;
-
-    box-shadow: 0 0 15px rgba(0,255,0,0.3);
-      
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    transition: box-shadow 0.3s ease; 
-}
-
-/* ========== BOÎTE TITRE ========== */
+/* ========== TITRE ========== */
 .cyber-card {
     background: black;
     position: relative;
-    width: 90%;
-    
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 30px;
-    border-bottom-left-radius: 30px;
-
-    box-shadow: 0 0 15px rgba(0,255,0,0.3);
-      
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* ========== DÉCORATIONS (Lignes) ========== */
-.corner {
-    position: absolute;
     width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
-.top-left { top: 10px; left: 10px; }
-.bottom-right { bottom: 10px; right: 10px; }
-
-.h-line {
-    width: 40%;
-    height: 4px;
-    background: #0f0;
-    position: absolute;
-}
-.top-left .h-line { top: 0; left: 0; }
-.bottom-right .h-line { bottom: 0; right: 0; }
-
-.v-line {
-    width: 4px;
-    height: 40%;
-    background: #0f0;
-    position: absolute;
-}
-.top-left .v-line { top: 0; left: 0; }
-.bottom-right .v-line { bottom: 0; right: 0; }
-
-/* ========== CONTENU SPÉCIFIQUE ========== */
-
-/* Titre */
-.title-card {
     max-width: 600px;
     padding: 30px;
-}
-
-.title-card h1 {
-    margin: 0;
-    font-size: clamp(24px, 5vw, 34px);
-    letter-spacing: 2px;
+    border-radius: 20px 30px 20px 30px;
+    box-shadow: 0 0 15px rgba(0,255,0,0.3);
     text-align: center;
 }
 
-/* Boîte Contenu (Image) */
-.content-card {
-    padding: 40px;
-}
+.title-card h1 { margin: 0; font-size: clamp(24px, 5vw, 34px); letter-spacing: 2px; }
 
-.image-container {
+/* ========== GRILLE DE COMPÉTENCES ========== */
+.skills-sections-container {
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 60px;
 }
 
-/* --- C'EST ICI QUE J'AI AJOUTÉ L'ANIMATION DE L'IMAGE --- */
-.skills-img {
+.group-title {
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    border-left: 4px solid rgb(255, 255, 255);
+    padding-left: 15px;
+    letter-spacing: 2px;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px;
     width: 100%;
-    max-width: 500px;
-    height: auto;
-    display: block;
-    /* Ajout de la transition pour la fluidité */
+}
+
+.stack-wrapper {
+    position: relative;
+    height: 200px;
     transition: transform 0.3s ease;
 }
 
-/* Effet de zoom au survol de l'image */
-.skills-img:hover {
-    transform: scale(1.1);
+.stack-wrapper:hover { transform: translateY(-8px); }
+
+.green-layer {
+    position: absolute;
+    top: 10px; left: 10px;
+    width: 100%; height: 100%;
+    background-color: #0f0;
+    z-index: 1;
+    border-radius: 20px 30px 20px 30px;
 }
 
-/* ========== RESPONSIVE MOBILE ========== */
-@media (max-width: 768px) {
-    .menu {
-        flex-direction: column;
-    }
+.black-layer {
+    position: relative;
+    background: black;
+    z-index: 2;
+    width: 100%; height: 100%;
+    border-radius: 20px 30px 20px 30px;
+    border: 1px solid rgba(0,255,0,0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 10px;
+}
 
-    .content-card {
-        padding: 20px;
-    }
-    
-    .h-line { width: 30%; }
-    .v-line { height: 30%; }
+/* ÉLÉMENTS CARTES */
+.skill-card-content img {
+    height: 50px;
+    width: auto;
+    max-width: 80px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(0,255,0,0.5));
+}
+
+.multi-icons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* Visibilité Root-Me */
+.bright-icon {
+    filter: brightness(0) invert(1) drop-shadow(0 0 8px #0f0) !important;
+}
+
+.skill-name {
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.skill-card-content small {
+    color: #0f0;
+    font-size: 10px;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+/* BARRES DE NIVEAU */
+.level-bar {
+    width: 85%;
+    height: 6px;
+    background: #111;
+    border: 1px solid #0f0;
+    border-radius: 10px;
+    margin-top: 5px;
+    overflow: hidden;
+}
+
+.level-fill {
+    height: 100%;
+    background: #0f0;
+    box-shadow: 0 0 10px #0f0;
+}
+
+/* CORNERS */
+.corner { position: absolute; width: 100%; height: 100%; pointer-events: none; }
+.top-left { top: 10px; left: 10px; }
+.bottom-right { bottom: 10px; right: 10px; }
+.h-line { width: 40px; height: 4px; background: #0f0; position: absolute; }
+.v-line { width: 4px; height: 40px; background: #0f0; position: absolute; }
+.top-left .h-line, .top-left .v-line { top: 0; left: 0; }
+.bottom-right .h-line, .bottom-right .v-line { bottom: 0; right: 0; }
+
+@media (max-width: 600px) {
+    .skills-grid { grid-template-columns: 1fr; }
+    .stack-wrapper { height: 180px; }
 }
