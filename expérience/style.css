@@ -1,51 +1,268 @@
-* { box-sizing: border-box; }
-body { margin: 0; padding: 0; width: 100%; min-height: 100vh; background-color: black; font-family: 'Orbitron', sans-serif; overflow-x: hidden; color: white; }
-#matrixCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; }
-.main-wrapper { display: flex; flex-direction: column; align-items: center; padding: 20px; gap: 50px; width: 100%; max-width: 1400px; margin: 0 auto; }
-
-/* MENU */
-.menu { width: 100%; max-width: 1060px; background: black; border: 1px solid #0f0; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; padding: 15px; gap: 20px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,255,0,0.2); }
-.menu a { color: #fff; text-decoration: none; font-size: 18px; transition: 0.3s; }
-.menu a:hover, .menu a.color { color: #0f0; }
-.menu-logo img { width: 50px; height: auto; vertical-align: middle; }
-
-/* TITRE & ANGLES (160x70 - Décalage 12px) */
-.cyber-card { background: black; position: relative; width: 90%; max-width: 600px; padding: 30px; border-radius: 20px 30px 20px 30px; box-shadow: 0 0 15px rgba(0,255,0,0.3); text-align: center; }
-.title-card h1 { margin: 0; font-size: clamp(24px, 5vw, 34px); letter-spacing: 2px; }
-
-.corner { position: absolute; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
-.top-left { top: 12px; left: 12px; }
-.bottom-right { bottom: 12px; right: 12px; }
-.h-line { width: 160px; height: 3px; background: #0f0; position: absolute; top: 0; left: 0; }
-.v-line { width: 3px; height: 70px; background: #0f0; position: absolute; top: 0; left: 0; }
-.bottom-right .h-line, .bottom-right .v-line { top: auto; left: auto; bottom: 0; right: 0; }
-
-/* GRILLE & CARTES */
-.experience-grid { display: flex; justify-content: center; gap: 50px; width: 100%; flex-wrap: wrap; padding-bottom: 20px; }
-.exp-stack { position: relative; width: 90%; max-width: 590px; min-height: 400px; transition: transform 0.3s ease; cursor: pointer; }
-.exp-stack:hover { transform: translateY(-5px); }
-.green-layer { position: absolute; top: 15px; left: 15px; width: 100%; height: 100%; background-color: #0f0; z-index: 1; border-radius: 20px 30px 20px 30px; box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); }
-.black-layer { position: relative; z-index: 2; background: black; width: 100%; height: 100%; border-radius: 20px 30px 20px 30px; box-shadow: 0 0 15px rgba(0,255,0,0.3); display: flex; flex-direction: column; padding: 30px; overflow: hidden; }
-
-.exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px; width: 100%; }
-.company-name { color: #0f0; font-size: 24px; margin: 0; }
-.job-title { color: white; font-size: 18px; margin: 0; }
-.duration { color: #0f0; font-size: 14px; margin: 0; font-style: italic; }
-
-/* ANIMATION PULSATION BLANCHE SUR LIEN */
-.exp-logo-link { display: block; text-decoration: none; cursor: pointer; }
-.exp-logo { width: 100px; height: auto; object-fit: contain; animation: logoPulse 2s ease-in-out infinite; }
-@keyframes logoPulse {
-    0% { transform: scale(1); filter: drop-shadow(0 0 2px #ffffff); }
-    50% { transform: scale(1.15); filter: drop-shadow(0 0 10px #ffffff); }
-    100% { transform: scale(1); filter: drop-shadow(0 0 2px #ffffff); }
+/* ========== RESET & GLOBAL ========== */
+* { 
+    box-sizing: border-box; 
 }
 
-.exp-description { color: white; font-size: 22px; text-align: center; margin-top: auto; margin-bottom: auto; line-height: 1.5; }
+body { 
+    margin: 0; 
+    padding: 0; 
+    width: 100%; 
+    min-height: 100vh; 
+    background-color: black; 
+    font-family: 'Orbitron', sans-serif; 
+    overflow-x: hidden; 
+    color: white; 
+}
 
-@media (max-width: 900px) { .experience-grid { flex-direction: column; align-items: center; gap: 60px; } }
+#matrixCanvas { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh; 
+    z-index: -1; 
+}
+
+.main-wrapper { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    padding: 20px; 
+    gap: 60px; 
+    width: 100%; 
+    max-width: 1400px; 
+    margin: 0 auto; 
+}
+
+/* ========== MENU (HARMONISÉ) ========== */
+.menu { 
+    width: 100%; 
+    max-width: 1060px; 
+    background: black; 
+    border: 1px solid #0f0; 
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 15px; 
+    gap: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 0 15px rgba(0,255,0,0.2); 
+}
+
+.menu a { 
+    color: #fff; 
+    text-decoration: none; 
+    font-size: 18px; 
+    transition: 0.3s; 
+}
+.menu a:hover, .menu a.color { 
+    color: #0f0; 
+}
+.menu-logo img { 
+    width: 50px; 
+    height: auto; 
+    vertical-align: middle; 
+}
+
+/* ========== TITRE ========== */
+.cyber-card { 
+    background: black; 
+    position: relative; 
+    width: 90%; 
+    max-width: 600px; 
+    padding: 30px; 
+    border-radius: 20px 30px 20px 30px; 
+    box-shadow: 0 0 15px rgba(0,255,0,0.3); 
+    text-align: center; 
+}
+
+.title-card h1 { 
+    margin: 0; 
+    font-size: clamp(24px, 5vw, 34px); 
+    letter-spacing: 2px; 
+}
+
+/* ========== DÉCORATIONS (CORNERS) ========== */
+.corner { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    pointer-events: none; 
+    z-index: 5; 
+}
+.top-left { 
+    top: 12px; 
+    left: 12px; 
+}
+.bottom-right { 
+    bottom: 12px; 
+    right: 12px; 
+}
+
+/* Lignes harmonisées en % pour le responsive */
+.h-line { 
+    width: 30%; 
+    height: 3px; 
+    background: #0f0; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+}
+.v-line { 
+    width: 3px; 
+    height: 30%; 
+    background: #0f0; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+}
+.bottom-right .h-line, .bottom-right .v-line { 
+    top: auto; 
+    left: auto; 
+    bottom: 0; 
+    right: 0; 
+}
+
+/* ========== GRILLE & CARTES EXPÉRIENCE ========== */
+.experience-grid { 
+    display: flex; 
+    justify-content: center; 
+    gap: 50px; 
+    width: 100%; 
+    flex-wrap: wrap; 
+    padding-bottom: 40px; 
+}
+
+.exp-stack { 
+    position: relative; 
+    width: 95%; 
+    max-width: 550px; 
+    min-height: 380px; 
+    transition: transform 0.3s ease; 
+}
+
+.exp-stack:hover { 
+    transform: translateY(-8px); 
+}
+
+.green-layer { 
+    position: absolute; 
+    top: 15px; 
+    left: 15px; 
+    width: 100%; 
+    height: 100%; 
+    background-color: #0f0; 
+    z-index: 1; 
+    border-radius: 20px 30px 20px 30px; 
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.2); 
+}
+
+.black-layer { 
+    position: relative; 
+    z-index: 2; 
+    background: black; 
+    width: 100%; 
+    height: 100%; 
+    border-radius: 20px 30px 20px 30px; 
+    box-shadow: 0 0 15px rgba(0,255,0,0.3); 
+    display: flex; 
+    flex-direction: column; 
+    padding: 40px; 
+    overflow: hidden; 
+}
+
+.exp-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start; 
+    margin-bottom: 30px; 
+    width: 100%; 
+}
+
+.company-name { 
+    color: #0f0; 
+    font-size: 22px; 
+    margin: 0; 
+    font-weight: bold; 
+}
+.job-title { 
+    color: white; 
+    font-size: 18px; 
+    margin: 5px 0; 
+}
+.duration { 
+    color: #0f0; 
+    font-size: 14px; 
+    margin: 0; 
+    font-style: italic; 
+    opacity: 0.8; 
+}
+
+/* ANIMATION LOGO */
+.exp-logo { 
+    width: 90px; 
+    height: auto; 
+    filter: drop-shadow(0 0 5px #fff);
+    animation: logoPulse 2s ease-in-out infinite; 
+}
+
+@keyframes logoPulse {
+    0% { 
+        transform: scale(1); 
+        filter: drop-shadow(0 0 2px #fff); 
+    }
+    50% { 
+        transform: scale(1.05); 
+        filter: drop-shadow(0 0 12px #fff); 
+    }
+    100% { 
+        transform: scale(1); 
+        filter: drop-shadow(0 0 2px #fff); 
+    }
+}
+
+.exp-description { 
+    color: white; 
+    font-size: 19px; 
+    text-align: left; 
+    line-height: 1.6; 
+    margin-top: 20px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 900px) { 
+    .experience-grid { 
+        flex-direction: column; 
+        align-items: center; 
+        gap: 60px; 
+    } 
+    .exp-stack { 
+        min-height: auto; 
+    }
+}
+
+@media (max-width: 768px) {
+    .menu { 
+        flex-direction: column; 
+    } /* Passage en colonne sur mobile */
+    .main-wrapper { 
+        gap: 40px; 
+    }
+}
+
 @media (max-width: 600px) {
-    .menu { flex-direction: column; }
-    .exp-header { flex-direction: column-reverse; align-items: center; text-align: center; gap: 15px; }
-    .exp-description { font-size: 18px; }
+    .exp-header { 
+        flex-direction: column-reverse; 
+        align-items: center; 
+        text-align: center; 
+        gap: 20px; 
+    }
+    .exp-description { 
+        font-size: 17px; 
+        text-align: center; 
+    }
+    .black-layer { 
+        padding: 30px 20px; 
+    }
 }
