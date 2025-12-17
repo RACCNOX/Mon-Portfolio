@@ -95,24 +95,27 @@ body {
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
     padding: 20px; gap: 10px;
-    overflow: hidden; /* Empêche les coins de déborder */
+    /* overflow: hidden est crucial pour que les lignes de 160px ne déforment pas la grille */
+    overflow: hidden; 
 }
 
 /* ÉLÉMENTS CARTES */
 .skill-card-content img {
     height: 50px; width: auto;
     max-width: 80px; object-fit: contain;
+    position: relative; z-index: 10;
 }
 
 .multi-icons { display: flex; gap: 15px; justify-content: center; }
 
 .bright-icon {
-    filter: brightness(0) invert(1) drop-shadow(0 0 8px rgb(255, 255, 255)) !important;
+    filter: brightness(0) invert(1) drop-shadow(0 0 8px #0f0) !important;
 }
 
 .skill-name {
     font-size: 15px; font-weight: bold;
     color: #fff; text-align: center; margin-top: 5px;
+    position: relative; z-index: 10;
 }
 
 .skill-card-content small {
@@ -125,7 +128,7 @@ body {
     width: 85%; height: 6px;
     background: #111; border: 1px solid #0f0;
     border-radius: 10px; margin-top: 5px;
-    overflow: hidden; position: relative; z-index: 3;
+    overflow: hidden; position: relative; z-index: 10;
 }
 
 .level-fill {
@@ -133,25 +136,41 @@ body {
     box-shadow: 0 0 10px #0f0;
 }
 
-/* ========== LES COINS (CORNERS) ========== */
+/* ========== LES COINS (CORNERS) - AVANCÉS VERS L'INTÉRIEUR ========== */
 .corner {
-    position: absolute; width: 100%; height: 100%;
-    pointer-events: none; z-index: 5;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
 }
 
-.top-left { top: 8px; left: 8px; }
-.bottom-right { bottom: 8px; right: 8px; }
+/* On change 0 par 12px pour les "avancer" dans la carte */
+.top-left { 
+    top: 12px; 
+    left: 12px; 
+}
+
+.bottom-right { 
+    bottom: 12px; 
+    right: 12px; 
+}
 
 .h-line {
-    width: 160px; height: 3px;
-    background: #0f0; position: absolute;
+    width: 160px; /* Tes dimensions conservées */
+    height: 3px;
+    background: #0f0;
+    position: absolute;
 }
 
 .v-line {
-    width: 3px; height: 70px;
-    background: #0f0; position: absolute;
+    width: 3px;
+    height: 70px; /* Tes dimensions conservées */
+    background: #0f0;
+    position: absolute;
 }
 
+/* Alignement interne aux coins */
 .top-left .h-line, .top-left .v-line { top: 0; left: 0; }
 .bottom-right .h-line, .bottom-right .v-line { bottom: 0; right: 0; }
 
