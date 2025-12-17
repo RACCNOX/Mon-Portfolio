@@ -1,3 +1,15 @@
+html {
+    -webkit-text-size-adjust: 100%; /* Empêche iOS de grossir le texte tout seul */
+}
+
+/* Vérifie que cette valeur n'est pas trop grande pour ton écran */
+.stack-wrapper {
+    position: relative;
+    height: 200px;
+    max-width: 100%; /* Sécurité pour ne pas déborder */
+    transition: transform 0.3s ease;
+}
+
 /* ========== RESET & GLOBAL ========== */
 * { box-sizing: border-box; }
 
