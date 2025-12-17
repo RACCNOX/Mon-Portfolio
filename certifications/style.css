@@ -1,7 +1,5 @@
 /* ========== RESET & GLOBAL ========== */
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
@@ -16,10 +14,8 @@ body {
 
 #matrixCanvas {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
     z-index: -1;
 }
 
@@ -57,29 +53,15 @@ body {
     transition: 0.3s;
 }
 
-.menu a:hover, .menu a.color {
-    color: #0f0;
-}
+.menu a:hover, .menu a.color { color: #0f0; }
+.menu-logo img { width: 50px; height: auto; }
 
-.menu-logo img {
-    width: 50px;
-    height: auto;
-    vertical-align: middle;
-}
-
-/* ========== STYLE GÉNÉRIQUE & DÉCORATION ========== */
-/* Utilisé pour le titre uniquement */
+/* ========== TITRE ========== */
 .cyber-card {
     background: black;
     position: relative;
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 30px;
-    border-bottom-left-radius: 30px;
+    border-radius: 20px 30px 20px 30px;
     box-shadow: 0 0 15px rgba(0,255,0,0.3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .title-card {
@@ -89,164 +71,106 @@ body {
     text-align: center;
 }
 
-.title-card h1 {
-    margin: 0;
-    font-size: clamp(24px, 5vw, 34px);
-    letter-spacing: 2px;
-}
+.title-card h1 { margin: 0; font-size: clamp(24px, 5vw, 34px); letter-spacing: 2px; }
 
-/* Lignes décoratives */
-.corner {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
+/* CORNERS */
+.corner { position: absolute; width: 100%; height: 100%; pointer-events: none; }
 .top-left { top: 10px; left: 10px; }
 .bottom-right { bottom: 10px; right: 10px; }
+.h-line { width: 30%; height: 4px; background: #0f0; position: absolute; }
+.v-line { width: 4px; height: 30%; background: #0f0; position: absolute; }
+.top-left .h-line, .top-left .v-line { top: 0; left: 0; }
+.bottom-right .h-line, .bottom-right .v-line { bottom: 0; right: 0; }
 
-.h-line {
-    width: 30%;
-    height: 4px;
-    background: #0f0;
-    position: absolute;
-}
-.top-left .h-line { top: 0; left: 0; }
-.bottom-right .h-line { bottom: 0; right: 0; }
-
-.v-line {
-    width: 4px;
-    height: 30%;
-    background: #0f0;
-    position: absolute;
-}
-.top-left .v-line { top: 0; left: 0; }
-.bottom-right .v-line { bottom: 0; right: 0; }
-
-
-/* ========== SYSTÈME DE COUCHES (STACK SYSTEM) ========== */
-
-.stack-wrapper {
-    position: relative;
+/* ========== SYSTEME DE COUCHES ========== */
+.certs-container {
+    width: 100%;
     display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
 }
 
-/* Couche VERTE (Derrière) */
+.cert-stack {
+    position: relative;
+    width: 95%;
+    max-width: 800px; /* Plus large pour l'image rectangulaire */
+    transition: transform 0.3s ease;
+}
+
+.cert-stack:hover { transform: translateY(-10px); }
+
 .green-layer {
     position: absolute;
-    top: 15px;
-    left: 15px;
-    width: 100%;
-    height: 100%;
+    top: 15px; left: 15px;
+    width: 100%; height: 100%;
     background-color: #0f0;
     z-index: 1;
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 30px;
-    border-bottom-left-radius: 30px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease; /* Ajout transition */
+    border-radius: 20px 30px 20px 30px;
 }
 
-/* Couche NOIRE (Devant) */
 .black-layer {
     position: relative;
     z-index: 2;
     background: black;
     width: 100%;
-    height: 100%;
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 30px;
-    border-bottom-left-radius: 30px;
-    box-shadow: 0 0 15px rgba(0,255,0,0.3);
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: box-shadow 0.3s ease; /* Ajout transition */
-}
-
-/* ========== CERTIFICATIONS SPÉCIFIQUE ========== */
-
-.certs-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 50px;
-    padding-bottom: 20px;
-}
-
-/* Wrapper spécifique pour donner la taille + ANIMATION */
-.cert-stack {
-    width: 90%;
-    max-width: 600px;
-    min-height: 150px;
-    
-    /* Animation setup */
-    transition: transform 0.3s ease;
-    cursor: pointer;
-}
-
-/* L'ANIMATION : Le bloc remonte */
-.cert-stack:hover {
-    transform: translateY(-5px);
-}
-
-/* L'ANIMATION : L'ombre s'intensifie */
-.cert-stack:hover .black-layer {
-    box-shadow: 0 0 25px rgba(0,255,0,0.6);
-}
-
-/* La carte noire interne */
-.cert-card {
+    border: 1px solid rgba(0,255,0,0.2);
+    border-radius: 20px 30px 20px 30px;
     padding: 40px;
-    width: 100%;
 }
 
-.cert-content {
+/* CONTENU DE LA CARTE */
+.cert-header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    width: 100%;
+    margin-bottom: 30px;
     flex-wrap: wrap;
     gap: 20px;
-    z-index: 3;
 }
 
 .cert-name {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: bold;
-    color: white;
+    color: rgb(255, 255, 255);
+    letter-spacing: 1px;
 }
 
-.cert-link img {
-    width: 130px;
+.rm-logo {
+    width: 120px;
     height: auto;
-    transition: transform 0.3s;
 }
 
-.cert-link img:hover {
-    transform: scale(1.1);
+/* SCREENSHOT SECTION */
+.cert-screenshot {
+    position: relative;
+    width: 100%;
+    border: 2px solid #0f0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,255,0,0.1);
 }
 
-/* ========== RESPONSIVE MOBILE ========== */
+.screen-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: brightness(0.9) contrast(1.1);
+}
+
+/* Effet Scanline Cyberpunk sur l'image */
+.scanline {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 255, 0, 0.05) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+    background-size: 100% 4px, 3px 100%;
+    pointer-events: none;
+}
+
+/* MOBILE */
 @media (max-width: 768px) {
-    .menu {
-        flex-direction: column;
-    }
-    
-    .cert-content {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .cert-name {
-        font-size: 24px;
-    }
-    
-    .h-line { width: 30%; }
-    .v-line { height: 30%; }
+    .menu { flex-direction: column; }
+    .cert-header { justify-content: center; text-align: center; }
+    .black-layer { padding: 20px; }
 }
