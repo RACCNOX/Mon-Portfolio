@@ -65,7 +65,7 @@ function animate() {
 }
 
 /* ==========================================================================
-   2. SYSTÈME DE SCAN & TRANSITION AUTO (DÉVERROUILLAGE AUDIO SILENCIEUX)
+   2. SYSTÈME DE SCAN & TRANSITION (DÉVERROUILLAGE AUDIO SANS LECTURE)
    ========================================================================== */
 function initScanner() {
     const target = document.getElementById('fingerprint-target');
@@ -81,13 +81,9 @@ function initScanner() {
         isScanning = true;
         if (e && e.cancelable) e.preventDefault();
 
-        // --- DÉVERROUILLAGE SILENCIEUX POUR MOBILE ---
+        // --- CORRECTION FINALE : ON "CHARGE" JUSTE LE SON SANS PLAY ---
         if (jarvisAudio) {
-            jarvisAudio.volume = 0; // On force le volume à 0 pour éviter un son parasite
-            jarvisAudio.play().then(() => {
-                jarvisAudio.pause();
-                jarvisAudio.currentTime = 0;
-            }).catch(err => console.log("Audio unlock ready"));
+            jarvisAudio.load(); // Prépare le fichier en mémoire sans le lire
         }
 
         target.classList.add('active');
@@ -117,7 +113,7 @@ function initScanner() {
 }
 
 /* ==========================================================================
-   3. TERMINAL AVEC LANCEMENT RÉEL DE JARVIS
+   3. TERMINAL : LE SEUL ENDROIT OÙ LE SON DÉMARRE RÉELLEMENT
    ========================================================================== */
 function generateCircuits() {
     const container = document.getElementById('circuit-board'); if(!container) return;
@@ -142,18 +138,20 @@ function generateCircuits() {
 }
 
 function runTerminal() {
-    // --- DÉMARRAGE AUDIO JARVIS : PILE AU DÉBUT DU TERMINAL ---
     const jarvisAudio = document.getElementById('jarvis-audio');
+    
+    // --- ICI SEULEMENT LE SON JOUE ---
     if (jarvisAudio) {
-        jarvisAudio.currentTime = 0;
         jarvisAudio.volume = 0;
+        jarvisAudio.currentTime = 0;
+        // Le navigateur autorise le play ici car il y a eu un clic (scan) avant
         jarvisAudio.play().then(() => {
             let vol = 0;
             const fade = setInterval(() => {
                 if (vol < 0.9) { vol += 0.1; jarvisAudio.volume = vol; }
                 else { jarvisAudio.volume = 1; clearInterval(fade); }
             }, 100); 
-        }).catch(err => console.log("Audio play failed"));
+        }).catch(err => console.log("Audio play failed at terminal start"));
     }
 
     const logs = ["> INITIATING PORTFOLIO...", "> CONNECTING TO SATELLITE...", "> UPLOADING RACCNOX CORE...", "> ACCESS GRANTED."];
