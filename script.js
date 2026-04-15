@@ -65,7 +65,7 @@ function animate() {
 }
 
 /* ==========================================================================
-   2. SYSTÈME DE SCAN & TRANSITION AUTO (DÉVERROUILLAGE AUDIO)
+   2. SYSTÈME DE SCAN & TRANSITION AUTO (DÉVERROUILLAGE AUDIO SILENCIEUX)
    ========================================================================== */
 function initScanner() {
     const target = document.getElementById('fingerprint-target');
@@ -81,12 +81,13 @@ function initScanner() {
         isScanning = true;
         if (e && e.cancelable) e.preventDefault();
 
-        // --- SÉCURITÉ MOBILE : ON DÉBLOQUE LE SON AU TOUCHER ---
+        // --- DÉVERROUILLAGE SILENCIEUX POUR MOBILE ---
         if (jarvisAudio) {
+            jarvisAudio.volume = 0; // On force le volume à 0 pour éviter un son parasite
             jarvisAudio.play().then(() => {
                 jarvisAudio.pause();
                 jarvisAudio.currentTime = 0;
-            }).catch(err => console.log("Audio ready for next step"));
+            }).catch(err => console.log("Audio unlock ready"));
         }
 
         target.classList.add('active');
@@ -116,7 +117,7 @@ function initScanner() {
 }
 
 /* ==========================================================================
-   3. TERMINAL AVEC ACTIVATION AUDIO JARVIS
+   3. TERMINAL AVEC LANCEMENT RÉEL DE JARVIS
    ========================================================================== */
 function generateCircuits() {
     const container = document.getElementById('circuit-board'); if(!container) return;
@@ -141,17 +142,18 @@ function generateCircuits() {
 }
 
 function runTerminal() {
-    // --- DÉMARRAGE AUDIO JARVIS ---
+    // --- DÉMARRAGE AUDIO JARVIS : PILE AU DÉBUT DU TERMINAL ---
     const jarvisAudio = document.getElementById('jarvis-audio');
     if (jarvisAudio) {
+        jarvisAudio.currentTime = 0;
         jarvisAudio.volume = 0;
         jarvisAudio.play().then(() => {
             let vol = 0;
             const fade = setInterval(() => {
                 if (vol < 0.9) { vol += 0.1; jarvisAudio.volume = vol; }
                 else { jarvisAudio.volume = 1; clearInterval(fade); }
-            }, 100); // Fondu de 1 seconde
-        }).catch(err => console.log("Audio block bypass failed"));
+            }, 100); 
+        }).catch(err => console.log("Audio play failed"));
     }
 
     const logs = ["> INITIATING PORTFOLIO...", "> CONNECTING TO SATELLITE...", "> UPLOADING RACCNOX CORE...", "> ACCESS GRANTED."];
