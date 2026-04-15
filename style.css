@@ -174,12 +174,20 @@ body, html {
 /* ==========================================================================
    4. HUD PRINCIPAL (Interface Interactive)
    ========================================================================== */
+/* --- Ajustement du HUD pour permettre le défilement --- */
 .jarvis-ui {
     position: relative;
     z-index: 10;
     height: 100vh;
     display: none;
     flex-direction: column;
+    overflow-y: auto; /* PERMET LE DÉFILEMENT VERTICAL */
+    overflow-x: hidden;
+    scrollbar-width: none; /* Cache la barre sur Firefox */
+}
+
+.jarvis-ui::-webkit-scrollbar {
+    display: none; /* Cache la barre sur Chrome/Safari */
 }
 
 /* Barre de navigation supérieure */
@@ -230,15 +238,16 @@ body, html {
     outline: none;
 }
 
-/* Grille du Menu Principal */
+/* --- Ajustement de la Grille de Menu --- */
 .menu-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     width: 90%;
     max-width: 900px;
-    padding: 80px 0;
+    padding: 100px 0; /* Un peu plus de padding pour ne pas coller aux bords */
     margin: auto;
+    flex-shrink: 0; /* Empêche la grille de s'écraser */
 }
 
 .menu-item {
