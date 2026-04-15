@@ -63,6 +63,7 @@ function initScanner() {
     const lockOverlay = document.getElementById('lock-overlay');
     const lockBox = lockOverlay.querySelector('.lock-box');
     const lockIcon = lockBox.querySelector('.lock-icon');
+    const jarvisAudio = document.getElementById('jarvis-audio');
     let isScanning = false; 
 
     if(scanBar) {
@@ -76,6 +77,15 @@ function initScanner() {
         if (isScanning) return;
         isScanning = true;
         if (e && e.cancelable) e.preventDefault();
+
+        // --- CORRECTION MOBILE : Déverrouillage de l'audio lors du contact ---
+        if (jarvisAudio) {
+            jarvisAudio.play().then(() => {
+                jarvisAudio.pause();
+                jarvisAudio.currentTime = 0;
+            }).catch(() => {});
+        }
+
         target.classList.add('active');
         scanBar.style.display = 'block';
         scanBar.style.animation = 'scanning 2s ease-in-out infinite alternate';
