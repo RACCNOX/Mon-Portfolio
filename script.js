@@ -34,7 +34,12 @@ function createEarth() {
 
 function loadISS() {
     const gltfLoader = new THREE.GLTFLoader();
-    gltfLoader.load('ISS_stationary.glb', (gltf) => { iss = gltf.scene; iss.scale.set(0.015, 0.015, 0.015); scene.add(iss); });
+    gltfLoader.load('ISS_stationary.glb', (gltf) => { 
+        iss = gltf.scene; 
+        // TAILLE RÉDUITE LÉGÈREMENT (0.010 au lieu de 0.015)
+        iss.scale.set(0.010, 0.010, 0.010); 
+        scene.add(iss); 
+    });
 }
 
 function setupLights() {
@@ -78,7 +83,7 @@ function initScanner() {
         isScanning = true;
         if (e && e.cancelable) e.preventDefault();
 
-        // --- CORRECTION MOBILE : Déverrouillage de l'audio lors du contact ---
+        // Déverrouillage préventif de l'audio pour mobile
         if (jarvisAudio) {
             jarvisAudio.play().then(() => {
                 jarvisAudio.pause();
