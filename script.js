@@ -175,8 +175,8 @@ function proceedToLoader() {
             jarvisText.style.animationDelay = "2.1s"; 
         }
         
-        // Transition finale : Laisse le temps de lire (2.1s anim + 1.4s lecture = 3.5s total)
-        // C'est assez rapide pour rester dans le temps du son
+        // Transition finale : Ajustée pour s'arrêter max 0.5s après la fin des animations/musique
+        // 2.1s (délai) + 0.5s (marge lecture rapide) = 2.6s total
         setTimeout(() => {
             loader.style.display = 'none';
             renderer.domElement.classList.add('reveal-effect');
@@ -186,7 +186,7 @@ function proceedToLoader() {
                 else clearInterval(zoomOut); 
             }, 20);
             document.getElementById('hud').style.display = 'flex';
-        }, 3500); 
+        }, 2600); 
     }, 1000);
 }
 
