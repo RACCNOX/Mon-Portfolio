@@ -1,3 +1,6 @@
+/* ==========================================================================
+   1. VARIABLES & CORE 3D (STRICTEMENT ORIGINAL)
+   ========================================================================== */
 let scene, camera, renderer, earth, stars, iss;
 
 function init3D() {
@@ -36,7 +39,6 @@ function loadISS() {
     const gltfLoader = new THREE.GLTFLoader();
     gltfLoader.load('ISS_stationary.glb', (gltf) => { 
         iss = gltf.scene; 
-        // TAILLE RÉDUITE LÉGÈREMENT (0.010 au lieu de 0.015)
         iss.scale.set(0.010, 0.010, 0.010); 
         scene.add(iss); 
     });
@@ -62,6 +64,9 @@ function animate() {
     renderer.render(scene, camera);
 }
 
+/* ==========================================================================
+   2. SYSTÈME DE SCAN & TRANSITION AUTO (DÉVERROUILLAGE AUDIO)
+   ========================================================================== */
 function initScanner() {
     const target = document.getElementById('fingerprint-target');
     const scanBar = target.querySelector('.scan-bar');
@@ -71,29 +76,23 @@ function initScanner() {
     const jarvisAudio = document.getElementById('jarvis-audio');
     let isScanning = false; 
 
-    if(scanBar) {
-        scanBar.style.boxShadow = "0 0 20px var(--cyan), 0 0 40px var(--cyan)";
-        scanBar.style.filter = "blur(2px)";
-        scanBar.style.borderRadius = "50%";
-        scanBar.style.height = "6px";
-    }
-
     const startScan = (e) => {
         if (isScanning) return;
         isScanning = true;
         if (e && e.cancelable) e.preventDefault();
 
-        // Déverrouillage préventif de l'audio pour mobile
+        // --- SÉCURITÉ MOBILE : ON DÉBLOQUE LE SON AU TOUCHER ---
         if (jarvisAudio) {
             jarvisAudio.play().then(() => {
                 jarvisAudio.pause();
                 jarvisAudio.currentTime = 0;
-            }).catch(() => {});
+            }).catch(err => console.log("Audio ready for next step"));
         }
 
         target.classList.add('active');
         scanBar.style.display = 'block';
         scanBar.style.animation = 'scanning 2s ease-in-out infinite alternate';
+
         setTimeout(() => {
             scanBar.style.display = 'none';
             lockOverlay.style.display = 'flex';
@@ -111,10 +110,14 @@ function initScanner() {
             }, 50);
         }, 2500);
     };
+
     target.addEventListener('mousedown', startScan, { once: true });
     target.addEventListener('touchstart', startScan, { once: true, passive: false });
 }
 
+/* ==========================================================================
+   3. TERMINAL AVEC ACTIVATION AUDIO JARVIS
+   ========================================================================== */
 function generateCircuits() {
     const container = document.getElementById('circuit-board'); if(!container) return;
     const w = 600, h = 600, cx = 300, cy = 300, r = 100;
@@ -138,17 +141,19 @@ function generateCircuits() {
 }
 
 function runTerminal() {
+    // --- DÉMARRAGE AUDIO JARVIS ---
     const jarvisAudio = document.getElementById('jarvis-audio');
     if (jarvisAudio) {
         jarvisAudio.volume = 0;
         jarvisAudio.play().then(() => {
             let vol = 0;
             const fade = setInterval(() => {
-                if (vol < 0.8) { vol += 0.2; jarvisAudio.volume = vol; }
+                if (vol < 0.9) { vol += 0.1; jarvisAudio.volume = vol; }
                 else { jarvisAudio.volume = 1; clearInterval(fade); }
-            }, 100);
-        }).catch(() => { console.log("Audio bloqué"); });
+            }, 100); // Fondu de 1 seconde
+        }).catch(err => console.log("Audio block bypass failed"));
     }
+
     const logs = ["> INITIATING PORTFOLIO...", "> CONNECTING TO SATELLITE...", "> UPLOADING RACCNOX CORE...", "> ACCESS GRANTED."];
     let i = 0; const content = document.getElementById('terminal-content');
     if(content) content.innerHTML = ""; 
@@ -181,6 +186,9 @@ function initLogin() {
     });
 }
 
+/* ==========================================================================
+   4. BOOTSTRAP
+   ========================================================================== */
 window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
 
 window.onload = () => {
