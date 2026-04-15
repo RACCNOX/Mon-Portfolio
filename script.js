@@ -130,7 +130,7 @@ function generateCircuits() {
             let y = cy + group.start[1] * r + (group.start[0] !== 0 ? offset : 0);
             let d = `M ${x} ${y}`; group.steps.forEach(s => { x += s[0]; y += s[1]; d += ` L ${x} ${y}`; });
             
-            // Apparition calée sur le zoom final (2.1s)
+            // Les circuits attendent la fin du zoom (1.5s glitch + 0.5s zoom = 2s)
             svg += `<path d="${d}" class="circuit-path" style="animation-delay: 2.1s; animation-duration: 0.6s;" />`;
             if(n === 0 || n === group.count -1) svg += `<rect x="${x-3}" y="${y-3}" width="6" height="6" class="circuit-node" style="animation-delay: 2.3s;" />`;
         }
@@ -149,7 +149,7 @@ function runTerminal() {
                 if (vol < 0.9) { vol += 0.1; jarvisAudio.volume = vol; }
                 else { jarvisAudio.volume = 1; clearInterval(fade); }
             }, 100); 
-        }).catch(err => console.log("Audio play error"));
+        }).catch(err => console.log("Audio fail"));
     }
 
     const logs = ["> INITIATING PORTFOLIO...", "> CONNECTING TO SATELLITE...", "> UPLOADING RACCNOX CORE...", "> ACCESS GRANTED."];
@@ -166,12 +166,17 @@ function proceedToLoader() {
         document.getElementById('nasa-terminal').style.display = 'none';
         const loader = document.getElementById('jarvis-loader');
         loader.style.display = 'flex'; 
+        
         generateCircuits();
         
+        // Force le texte à apparaître exactement en même temps que les circuits
         const jarvisText = loader.querySelector('.jarvis-text');
-        if(jarvisText) { jarvisText.style.animationDelay = "2.1s"; }
+        if(jarvisText) {
+            jarvisText.style.animationDelay = "2.1s"; 
+        }
         
-        // Fermeture propre 0.5s après la fin des animations
+        // Transition finale : Laisse le temps de lire (2.1s anim + 1.4s lecture = 3.5s total)
+        // C'est assez rapide pour rester dans le temps du son
         setTimeout(() => {
             loader.style.display = 'none';
             renderer.domElement.classList.add('reveal-effect');
@@ -181,7 +186,7 @@ function proceedToLoader() {
                 else clearInterval(zoomOut); 
             }, 20);
             document.getElementById('hud').style.display = 'flex';
-        }, 2600); 
+        }, 3500); 
     }, 1000);
 }
 
