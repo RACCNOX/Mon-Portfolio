@@ -1,6 +1,3 @@
-/* ==========================================================================
-   1. VARIABLES & CORE 3D (STRICTEMENT ORIGINAL)
-   ========================================================================== */
 let scene, camera, renderer, earth, stars, iss;
 
 function init3D() {
@@ -60,9 +57,6 @@ function animate() {
     renderer.render(scene, camera);
 }
 
-/* ==========================================================================
-   2. SYSTÈME DE SCAN & TRANSITION AUTO
-   ========================================================================== */
 function initScanner() {
     const target = document.getElementById('fingerprint-target');
     const scanBar = target.querySelector('.scan-bar');
@@ -81,14 +75,10 @@ function initScanner() {
     const startScan = (e) => {
         if (isScanning) return;
         isScanning = true;
-        
         if (e && e.cancelable) e.preventDefault();
-
-        // Animation Scan
         target.classList.add('active');
         scanBar.style.display = 'block';
         scanBar.style.animation = 'scanning 2s ease-in-out infinite alternate';
-
         setTimeout(() => {
             scanBar.style.display = 'none';
             lockOverlay.style.display = 'flex';
@@ -100,23 +90,16 @@ function initScanner() {
                     setTimeout(() => {
                         const overlay = document.getElementById('scanner-step');
                         overlay.style.opacity = '0';
-                        setTimeout(() => { 
-                            overlay.style.display = 'none'; 
-                            runTerminal(); 
-                        }, 500);
+                        setTimeout(() => { overlay.style.display = 'none'; runTerminal(); }, 500);
                     }, 1000);
                 }, 800);
             }, 50);
         }, 2500);
     };
-
     target.addEventListener('mousedown', startScan, { once: true });
     target.addEventListener('touchstart', startScan, { once: true, passive: false });
 }
 
-/* ==========================================================================
-   3. LOGIQUE INTERFACE (TERMINAL AVEC ACTIVATION AUDIO)
-   ========================================================================== */
 function generateCircuits() {
     const container = document.getElementById('circuit-board'); if(!container) return;
     const w = 600, h = 600, cx = 300, cy = 300, r = 100;
@@ -140,7 +123,6 @@ function generateCircuits() {
 }
 
 function runTerminal() {
-    // --- DÉPLACÉ ICI : DÉMARRAGE AUDIO AU MOMENT DU TERMINAL ---
     const jarvisAudio = document.getElementById('jarvis-audio');
     if (jarvisAudio) {
         jarvisAudio.volume = 0;
@@ -150,20 +132,13 @@ function runTerminal() {
                 if (vol < 0.8) { vol += 0.2; jarvisAudio.volume = vol; }
                 else { jarvisAudio.volume = 1; clearInterval(fade); }
             }, 100);
-        }).catch(() => {
-            console.log("Audio bloqué par le navigateur");
-        });
+        }).catch(() => { console.log("Audio bloqué"); });
     }
-
     const logs = ["> INITIATING PORTFOLIO...", "> CONNECTING TO SATELLITE...", "> UPLOADING RACCNOX CORE...", "> ACCESS GRANTED."];
     let i = 0; const content = document.getElementById('terminal-content');
     if(content) content.innerHTML = ""; 
-    
     const typing = setInterval(() => {
-        if(i < logs.length) { 
-            if(content) content.innerHTML += logs[i] + "<br>"; 
-            i++; 
-        }
+        if(i < logs.length) { if(content) content.innerHTML += logs[i] + "<br>"; i++; }
         else { clearInterval(typing); proceedToLoader(); }
     }, 600);
 }
@@ -191,9 +166,6 @@ function initLogin() {
     });
 }
 
-/* ==========================================================================
-   4. BOOTSTRAP
-   ========================================================================== */
 window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
 
 window.onload = () => {
